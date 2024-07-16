@@ -1,3 +1,4 @@
+import Hint from "@/components/hint";
 import { Button } from "@/components/ui/button";
 import { Fragment } from "@/generated/prisma";
 import { ExternalLink, ExternalLinkIcon, RefreshCcwIcon, Variable } from "lucide-react";
@@ -40,6 +41,7 @@ const FragmentWeb = ( {data} :props) => {
                      {data.sandboxUrl}
                 </span>
             </Button>
+            <Hint text="open in new tap" side="bottom" align="start">
             <Button size={"sm"} 
             variant={"outline"}
              onClick={()=>{
@@ -50,6 +52,7 @@ const FragmentWeb = ( {data} :props) => {
                    >
                <ExternalLinkIcon/>
             </Button>
+            </Hint>
         </div>
          <iframe 
           key={fragmentKey}
