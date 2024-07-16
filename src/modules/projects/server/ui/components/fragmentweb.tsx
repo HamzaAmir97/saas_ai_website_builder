@@ -29,9 +29,14 @@ const FragmentWeb = ( {data} :props) => {
   return (
     <div className="flex flex-col w-full h-full">
         <div className="p-2 border-b bg-sidebar flex items-center gap-x-2">
+        <Hint text="Refresh" side="bottom" align="start">
+
             <Button size={"sm"} variant={"outline"} onClick={onRefreash}>
                 <RefreshCcwIcon/>
             </Button>
+            </Hint>
+            <Hint text="Click to copy the link" side="bottom" align="center">
+
             <Button size={"sm"} 
             variant={"outline"}
              onClick={handleCopy}
@@ -41,6 +46,7 @@ const FragmentWeb = ( {data} :props) => {
                      {data.sandboxUrl}
                 </span>
             </Button>
+            </Hint>
             <Hint text="open in new tap" side="bottom" align="start">
             <Button size={"sm"} 
             variant={"outline"}
