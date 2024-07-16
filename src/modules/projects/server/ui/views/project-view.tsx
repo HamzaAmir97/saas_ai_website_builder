@@ -14,6 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Code2Icon, CrownIcon, EyeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import CodeView from "@/components/code-view";
 
 interface props {
     projectId: string,
@@ -91,7 +92,7 @@ export const ProjectView = ({ projectId }: props) => {
 
 
                         <TabsContent value="code">
-                            <p>TODO//code</p>
+                           <CodeView lang="ts" code="const a  = helloworld ;" />
                         </TabsContent>
                     
                     </Tabs>

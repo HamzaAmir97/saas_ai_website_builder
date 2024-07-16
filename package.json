@@ -78,6 +78,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/debug": "^4.1.12",
     "@types/node": "^20",
+    "@types/prismjs": "^1.26.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
