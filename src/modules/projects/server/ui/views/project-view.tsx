@@ -84,7 +84,6 @@ export const ProjectView = ({ projectId }: props) => {
                             </div>
                         </div>
 
-
                         <TabsContent value="preview">
                         {!!activeFragment && <FragmentWeb data={activeFragment} />}
 
