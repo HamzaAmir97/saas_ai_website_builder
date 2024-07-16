@@ -57,7 +57,9 @@ export const ProjectView = ({ projectId }: props) => {
                         value={tabState}
                         onValueChange={(value) => setTabState(value as "preview" | "code")}
                     >
-                        {/* Header section: triggers + buttons */}
+                     
+
+                                   {/* Header section: triggers + buttons */}
                         <div className="w-full flex items-center p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md">
@@ -69,7 +71,8 @@ export const ProjectView = ({ projectId }: props) => {
                                     <Code2Icon />
                                     <span><code>Code</code></span>
                                 </TabsTrigger>
-                            </TabsList>
+                                </TabsList>
+
 
                             <div className="ml-auto flex items-center gap-x-2">
                                 <Button asChild size="sm" variant="default">
@@ -81,14 +84,17 @@ export const ProjectView = ({ projectId }: props) => {
                             </div>
                         </div>
 
-                        {/* Tabs content should be direct children of <Tabs> */}
+
                         <TabsContent value="preview">
-                            {!!activeFragment && <FragmentWeb data={activeFragment} />}
-                        </TabsContent>
+                        {!!activeFragment && <FragmentWeb data={activeFragment} />}
+
+                         </TabsContent>
+
 
                         <TabsContent value="code">
                             <p>TODO//code</p>
                         </TabsContent>
+                    
                     </Tabs>
                 </ResizablePanel>
             </ResizablePanelGroup>
