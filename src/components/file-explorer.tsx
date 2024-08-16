@@ -59,11 +59,19 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
                                 >
                                     <CopyIcon />
                                 </Button>
+
                             </Hint>
 
                         </div>
                        
+                        <div className="flex overflow-auto">
+                            <CodeView
+                                code={files[selectedFile]}
+                                lang={getLanguageFormExtension(selectedFile)}
 
+                            />
+
+                        </div>
 
                     </div>
                 ) : (

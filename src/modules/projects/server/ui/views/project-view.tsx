@@ -97,13 +97,12 @@ export const ProjectView = ({ projectId }: props) => {
                         </TabsContent>
 
 
-                        <TabsContent value="code">
-                            {activeFragment?.file ? (
-                                <FileExplorer files={activeFragment.file as { [path: string]: string }} />
-                            ) : (
-                                <p className="text-sm text-muted-foreground p-4">No file selected</p>
-                            )} 
-                        
+                        <TabsContent value="code" className="min-h-0">
+                            {!!activeFragment?.file && (
+                                <FileExplorer 
+                                    files={activeFragment.file as { [path: string]: string }}
+                                />
+                            )}
                         </TabsContent>
                      
 
