@@ -65,12 +65,12 @@ export const ProjectView = ({ projectId }: props) => {
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md">
                                     <EyeIcon />
-                                    <span>Demo</span>
+                                    Demo
                                 </TabsTrigger>
 
                                 <TabsTrigger value="code" className="rounded-md">
-                                    <Code2Icon />
-                                    <span><code>Code</code></span>
+                                    <Code2Icon /> Code
+                                   
                                 </TabsTrigger>
                                 </TabsList>
 
