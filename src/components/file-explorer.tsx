@@ -3,6 +3,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './ui/resiz
 import Hint from './hint';
 import { Button } from './ui/button';
 import { CopyIcon } from 'lucide-react';
+import CodeView from './code-view';
 
 
 
@@ -59,7 +60,11 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
                
                              </div>
                                <div className="flex overflow-auto">
+                                  <CodeView  
+                                  code={files[selectedFile]}
+                                  lang={getLanguageFormExtension(selectedFile)}
 
+                                  />
 
                                </div>
                     </div>

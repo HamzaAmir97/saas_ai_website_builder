@@ -32,9 +32,12 @@ const FragmentWeb = ( {data} :props) => {
         <Hint text="Refresh" side="bottom" align="start">
 
             <Button size={"sm"} variant={"outline"} onClick={onRefreash}>
-                <RefreshCcwIcon/>
+            <RefreshCcwIcon/>
             </Button>
             </Hint>
+
+
+
             <Hint text="Click to copy the link" side="bottom" align="center">
 
             <Button size={"sm"} 
@@ -42,11 +45,18 @@ const FragmentWeb = ( {data} :props) => {
              onClick={handleCopy}
              disabled = {!data.sandboxUrl || copied}
             className="flex-1 justify-start text-start font-normal">
+                
                 <span className="truncate">
                      {data.sandboxUrl}
+              
                 </span>
             </Button>
+
             </Hint>
+
+
+
+
             <Hint text="open in new tap" side="bottom" align="start">
             <Button size={"sm"} 
             variant={"outline"}
@@ -56,10 +66,16 @@ const FragmentWeb = ( {data} :props) => {
              }}
              disabled = {!data.sandboxUrl}
                    >
+
                <ExternalLinkIcon/>
+
+
             </Button>
             </Hint>
+
+
         </div>
+        
          <iframe 
           key={fragmentKey}
           className="h-full w-full"

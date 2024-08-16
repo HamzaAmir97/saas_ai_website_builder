@@ -14,7 +14,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Code2Icon, CrownIcon, EyeIcon, SeparatorVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import CodeView from "@/components/code-view";
 import FileExplorer from "@/components/file-explorer";
 
 interface props {
@@ -38,42 +37,42 @@ export const ProjectView = ({ projectId }: props) => {
                     minSize={20}
                     className="flex flex-col min-h-0"
                 >
-                    <Suspense fallback={<p>loading project .... </p>}>
+                    {/* <Suspense fallback={<p>loading project .... </p>}> */}
                         <ProjectHeader projectId={projectId} />
-                    </Suspense>
+                    {/* </Suspense> */}
 
-                    <Suspense fallback={<p>Loading ...</p>}>
+                    {/* <Suspense fallback={<p>Loading ...</p>}> */}
                         <MessagesContainer projectId={projectId}
                             activeFragment={activeFragment}
                             setActiveFragment={setactiveFragment}
                         />
-                    </Suspense>
+                    {/* </Suspense> */}
                 </ResizablePanel>
 
                 <ResizableHandle withHandle />
 
-                <ResizablePanel defaultSize={65} maxSize={50}>
-                    <Tabs
+
+
+
+                <ResizablePanel defaultSize={65} minSize={50}>
+                
+                <Tabs
                         className="h-full gap-y-0"
                         defaultValue="preview"
                         value={tabState}
                         onValueChange={(value) => setTabState(value as "preview" | "code")}
                     >
 
-
                         {/* Header section: triggers + buttons */}
                         <div className="w-full flex items-c p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md">
-                                    <span><EyeIcon />   Demo </span>
+                                   <Button variant={"ghost"}> <EyeIcon />   <span> Demo </span> </Button>
 
                                 </TabsTrigger>
+                               
                                 <TabsTrigger value="code" className="rounded-md">
-                                    <span>/</span>
-
-                                </TabsTrigger>
-                                <TabsTrigger value="code" className="rounded-md">
-                                    <Code2Icon /> Code
+                                <Button variant={"ghost"}>  <Code2Icon /> <span> Code </span> </Button>
 
                                 </TabsTrigger>
 
@@ -90,6 +89,7 @@ export const ProjectView = ({ projectId }: props) => {
                             </div>
                         </div>
 
+                
                         <TabsContent value="preview">
                             {!!activeFragment && <FragmentWeb data={activeFragment} />}
 
@@ -103,10 +103,17 @@ export const ProjectView = ({ projectId }: props) => {
                                 <p className="text-sm text-muted-foreground p-4">No file selected</p>
                             )}
                         </TabsContent>
+                     
+
+
+
 
                     </Tabs>
+
                 </ResizablePanel>
             </ResizablePanelGroup>
+
+
         </div>
     )
 }
