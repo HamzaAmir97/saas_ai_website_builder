@@ -15,6 +15,7 @@ import { Code2Icon, CrownIcon, EyeIcon, SeparatorVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import FileExplorer from "@/components/file-explorer";
+import CodeView from "@/components/code-view";
 
 interface props {
     projectId: string,
@@ -101,7 +102,8 @@ export const ProjectView = ({ projectId }: props) => {
                                 <FileExplorer files={activeFragment.file as { [path: string]: string }} />
                             ) : (
                                 <p className="text-sm text-muted-foreground p-4">No file selected</p>
-                            )}
+                            )} 
+                        
                         </TabsContent>
                      
 

@@ -10,7 +10,7 @@ import CodeView from './code-view';
 type FileCollection = { [path: string]: string };
 
 function getLanguageFormExtension(filename: string): string {
-    const extnsion = filename.split(",").pop()?.toLocaleLowerCase();
+    const extnsion = filename.split(".").pop()?.toLocaleLowerCase();
     return extnsion || "text";
 
 }
@@ -37,36 +37,34 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
 
             </ResizablePanel>
 
+
             <ResizableHandle className="hover:bg-primary transition-colors" />
+
+
             <ResizablePanel defaultSize={70} minSize={50} >
-       
+
                 {selectedFile && files[selectedFile] ? (
-               
+
                     <div className="h-full w-full flex-col">
 
-                             <div className="border-b bg-sidebar px-4 py-2 fleex justify-between items-center gap-x-2">
+                        <div className="border-b bg-sidebar px-4 py-2 flex justify-between items-center gap-x-2">
 
-                                    <Hint text="copy to clipboard" side="bottom">
-                                    <Button
+                            <Hint text="copy to clipboard" side="bottom">
+                                <Button
                                     variant={"outline"}
                                     size="icon"
                                     className='ml-auto'
                                     disabled={false}
-                                    onClick={()=>{}}
-                                    >
-                                    <CopyIcon/>
-                                    </Button>
-                                    </Hint>
-               
-                             </div>
-                               <div className="flex overflow-auto">
-                                  <CodeView  
-                                  code={files[selectedFile]}
-                                  lang={getLanguageFormExtension(selectedFile)}
+                                    onClick={() => { }}
+                                >
+                                    <CopyIcon />
+                                </Button>
+                            </Hint>
 
-                                  />
+                        </div>
+                       
 
-                               </div>
+
                     </div>
                 ) : (
                     <div className="flex h-full items-center justify-center text-muted-foreground">
@@ -76,7 +74,6 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
 
 
             </ResizablePanel>
-
 
 
         </ResizablePanelGroup>
