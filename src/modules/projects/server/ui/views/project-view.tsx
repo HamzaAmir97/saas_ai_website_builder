@@ -11,10 +11,11 @@ import ProjectHeader from "../components/project-header";
 import FragmentWeb from "../components/fragmentweb";
 import { Fragment } from "@/generated/prisma";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import { Code2Icon, CrownIcon, EyeIcon } from "lucide-react";
+import { Code2Icon, CrownIcon, EyeIcon, SeparatorVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import CodeView from "@/components/code-view";
+import FileExplorer from "@/components/file-explorer";
 
 interface props {
     projectId: string,
@@ -58,21 +59,25 @@ export const ProjectView = ({ projectId }: props) => {
                         value={tabState}
                         onValueChange={(value) => setTabState(value as "preview" | "code")}
                     >
-                     
 
-                                   {/* Header section: triggers + buttons */}
-                        <div className="w-full flex items-center p-2 border-b gap-x-2">
+
+                        {/* Header section: triggers + buttons */}
+                        <div className="w-full flex items-c p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md">
-                                    <EyeIcon />
-                                    Demo
-                                </TabsTrigger>
+                                    <span><EyeIcon />   Demo </span>
 
+                                </TabsTrigger>
+                                <TabsTrigger value="code" className="rounded-md">
+                                    <span>/</span>
+
+                                </TabsTrigger>
                                 <TabsTrigger value="code" className="rounded-md">
                                     <Code2Icon /> Code
-                                   
+
                                 </TabsTrigger>
-                                </TabsList>
+
+                            </TabsList>
 
 
                             <div className="ml-auto flex items-center gap-x-2">
@@ -86,15 +91,19 @@ export const ProjectView = ({ projectId }: props) => {
                         </div>
 
                         <TabsContent value="preview">
-                        {!!activeFragment && <FragmentWeb data={activeFragment} />}
+                            {!!activeFragment && <FragmentWeb data={activeFragment} />}
 
-                         </TabsContent>
+                        </TabsContent>
 
 
                         <TabsContent value="code">
-                           <CodeView lang="ts" code="const a  = helloworld ;" />
+                            {activeFragment?.file ? (
+                                <FileExplorer files={activeFragment.file as { [path: string]: string }} />
+                            ) : (
+                                <p className="text-sm text-muted-foreground p-4">No file selected</p>
+                            )}
                         </TabsContent>
-                    
+
                     </Tabs>
                 </ResizablePanel>
             </ResizablePanelGroup>
