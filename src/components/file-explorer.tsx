@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './ui/resizable';
 import Hint from './hint';
+import { Button } from './ui/button';
+import { CopyIcon } from 'lucide-react';
+
 
 
 type FileCollection = { [path: string]: string };
@@ -42,12 +45,23 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
 
                              <div className="border-b bg-sidebar px-4 py-2 fleex justify-between items-center gap-x-2">
 
-                                    <Hint text="copy to clipboard/>
-
+                                    <Hint text="copy to clipboard" side="bottom">
+                                    <Button
+                                    variant={"outline"}
+                                    size="icon"
+                                    className='ml-auto'
+                                    disabled={false}
+                                    onClick={()=>{}}
+                                    >
+                                    <CopyIcon/>
+                                    </Button>
+                                    </Hint>
+               
                              </div>
-                      
-                         
-                        <p>TODO :CODE VIEW</p>
+                               <div className="flex overflow-auto">
+
+
+                               </div>
                     </div>
                 ) : (
                     <div className="flex h-full items-center justify-center text-muted-foreground">
