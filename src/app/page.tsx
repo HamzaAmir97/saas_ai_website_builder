@@ -1,7 +1,4 @@
 
-import { useQuery } from '@tanstack/react-query';
-
-
 
 const page = () => {
 
@@ -10,7 +7,7 @@ const page = () => {
   return (
     <div  className='font-bold  text-rose-500'>
       
-      
+      hello world
     </div>
   )
 }
