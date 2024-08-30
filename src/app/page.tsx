@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 
  
 const page = () => {
@@ -27,6 +27,7 @@ const page = () => {
    invok baground
 
     </Button>
+    <Toaster/>
     </div>
   )
 }

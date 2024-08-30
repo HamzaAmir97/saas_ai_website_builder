@@ -11,13 +11,13 @@ export const helloWorld = inngest.createFunction(
   { id: "hello-world" },
   { event: "test/hello.world" },
   async ({ event }) => {
-    const summarizer = createAgent({
-      model: gemini({ model: "gemini-1.5-flash" }),
+    const codeAgent = createAgent({
+      model: gemini({ model: "gemini-2.0-flash" }),
       name: "Summarizer",
-      system: "You are a summarizer...",
+      system: "You are an expert next js developer. you write  readable mantainable code.you write simple next js & react snippets.",
     });
-    const { output } = await summarizer.run(
-      `summarize the following text: ${event.data.value}`
+    const { output } = await codeAgent.run(
+      `write the following sippet: ${event.data.value}`
     );
     return { output };
   }
