@@ -1,10 +1,24 @@
 import { inngest } from "./client";
+import {
+  createNetwork,
+  createAgent,
+  openai,
+  anthropic,
+  gemini,
+} from "@inngest/agent-kit";
 
 export const helloWorld = inngest.createFunction(
   { id: "hello-world" },
   { event: "test/hello.world" },
-  async ({ event, step }) => {
-    await step.sleep("wait-a-moment", "10s");
-    return { message: `Hello ${event.data.email}!` };
-  },
+  async ({ event }) => {
+    const summarizer = createAgent({
+      model: gemini({ model: "gemini-1.5-flash" }),
+      name: "Summarizer",
+      system: "You are a summarizer...",
+    });
+    const { output } = await summarizer.run(
+      `summarize the following text: ${event.data.value}`
+    );
+    return { output };
+  }
 );
