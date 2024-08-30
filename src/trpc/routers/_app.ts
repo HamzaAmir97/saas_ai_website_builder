@@ -7,7 +7,7 @@ export const appRouter = createTRPCRouter({
 
     .input(
       z.object({
-        text: z.string(),
+        value: z.string(),
       }),
     )
 
@@ -16,7 +16,7 @@ export const appRouter = createTRPCRouter({
         name: 'test/hello.world',
           data : {
 
-           email : input.text,
+           value : input.value,
         }
 
       })
