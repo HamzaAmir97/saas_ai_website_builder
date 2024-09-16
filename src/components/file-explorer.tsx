@@ -8,7 +8,7 @@ import { convertFilesToTreeItems } from '@/lib/utils';
 import { TreeItem } from '../../types';
 import { TreeView } from './tree-view';
 import path from 'path';
-import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbPage, BreadcrumbSeparator } from './ui/breadcrumb';
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from './ui/breadcrumb';
 
 
 
@@ -87,6 +87,16 @@ const FileBreadcrumb = ({ filePath }: FileBreadcrumbProps) => {
 
         }
     }
+
+    return(
+       <Breadcrumb >
+         <BreadcrumbList>
+         
+           {renderBredcrumbItems()}
+         </BreadcrumbList>
+       
+       </Breadcrumb> 
+    )
 };
 
 interface FileExplorerProps {
