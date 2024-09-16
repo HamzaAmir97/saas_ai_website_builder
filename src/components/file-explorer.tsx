@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './ui/resizable';
 import Hint from './hint';
 import { Button } from './ui/button';
@@ -7,6 +7,8 @@ import CodeView from './code-view';
 import { convertFilesToTreeItems } from '@/lib/utils';
 import { TreeItem } from '../../types';
 import { TreeView } from './tree-view';
+import path from 'path';
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbPage, BreadcrumbSeparator } from './ui/breadcrumb';
 
 
 
@@ -16,7 +18,76 @@ function getLanguageFormExtension(filename: string): string {
     const extnsion = filename.split(".").pop()?.toLocaleLowerCase();
     return extnsion || "text";
 
+};
+interface FileBreadcrumbProps {
+    filePath: string,
+
 }
+
+const FileBreadcrumb = ({ filePath }: FileBreadcrumbProps) => {
+    const pathSegmanets = filePath.split("/");
+    const maxSegments = 4;
+
+
+    const renderBredcrumbItems = () => {
+        if (pathSegmanets.length <= maxSegments) {
+            //show all segmanets of 4 or less
+            return pathSegmanets.map((segment, index) => {
+                const isLast = index === pathSegmanets.length - 1;
+
+                return (
+                    <Fragment key={index}
+
+                    >
+                        <BreadcrumbItem>
+                            {isLast ? (
+                                <BreadcrumbPage className='font-medium'>
+                                    {segment}
+                                </BreadcrumbPage>
+
+                            ) : (
+                                <span className="text-muted-foreground">
+                                    {segment}
+                                </span>
+                            )
+
+                            }
+                        </BreadcrumbItem>
+                        {!isLast && <BreadcrumbSeparator />}
+                    </Fragment>
+                )
+
+
+            })
+
+        }
+        else {
+            const firstSegment = pathSegmanets[0];
+            const lastSegment = pathSegmanets.length - 1;
+            return (
+                <>
+                    <BreadcrumbItem>
+                        
+                            <span className='text-muted-foreground'>
+                                {firstSegment}
+                            </span>
+                        <BreadcrumbSeparator>
+                        <BreadcrumbItem>
+                        <BreadcrumbEllipsis/>
+                        </BreadcrumbItem>
+                        </BreadcrumbSeparator>
+                        <BreadcrumbItem>
+                        <BreadcrumbPage className='font-medium'>
+                        {lastSegment}
+                        </BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </BreadcrumbItem>
+                </>
+            )
+
+        }
+    }
+};
 
 interface FileExplorerProps {
     files: FileCollection,
@@ -31,26 +102,26 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
         const fileKeys = Object.keys(files);
         return fileKeys.length > 0 ? fileKeys[0] : null;
     })
-      const treeData= useMemo(()=>{
-             return convertFilesToTreeItems(files);
-      },[files]);
-          const handleFilesSelect = useCallback(( filepath :string)=>{
-              
-              if (files[filepath]){
-                 setSelectedFile(filepath);
-              }
+    const treeData = useMemo(() => {
+        return convertFilesToTreeItems(files);
+    }, [files]);
+    const handleFilesSelect = useCallback((filepath: string) => {
 
-          },[files])
+        if (files[filepath]) {
+            setSelectedFile(filepath);
+        }
+
+    }, [files])
 
     return (
 
         <ResizablePanelGroup direction="horizontal">
 
             <ResizablePanel defaultSize={30} minSize={30} className='bg-sidebar'>
-                <TreeView 
-                         data={treeData } 
-                         value = {selectedFile}
-                      onSelect={handleFilesSelect}/>
+                <TreeView
+                    data={treeData}
+                    value={selectedFile}
+                    onSelect={handleFilesSelect} />
 
             </ResizablePanel>
 
@@ -80,7 +151,7 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
                             </Hint>
 
                         </div>
-                       
+
                         <div className="flex overflow-auto">
                             <CodeView
                                 code={files[selectedFile]}
