@@ -10,11 +10,10 @@ interface TreeViewProps {
 
 import React from 'react'
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarProvider, SidebarRail } from "./ui/sidebar";
-import { ChevronsLeftRightIcon, ChevronsRightIcon, FileIcon, FolderIcon } from "lucide-react";
+import {  ChevronsRightIcon, FileIcon, FolderIcon } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
-import { it } from "node:test";
 
-const TreeView = ({data,
+export  const  TreeView = ({data,
     value,
    onSelect}:TreeViewProps) => {
   return (
@@ -52,7 +51,7 @@ const TreeView = ({data,
 
 
        </SidebarContent>
-  <SidebarRail/>
+            <SidebarRail/>
 
       </Sidebar>
 
@@ -137,4 +136,4 @@ const Tree = ({item,
     
 };
 
-export default Tree
+

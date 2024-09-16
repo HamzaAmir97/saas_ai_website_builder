@@ -5,8 +5,8 @@ import { Button } from './ui/button';
 import { CopyIcon } from 'lucide-react';
 import CodeView from './code-view';
 import { convertFilesToTreeItems } from '@/lib/utils';
-import TreeView from './tree-view';
 import { TreeItem } from '../../types';
+import { TreeView } from './tree-view';
 
 
 
@@ -48,7 +48,7 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
 
             <ResizablePanel defaultSize={30} minSize={30} className='bg-sidebar'>
                 <TreeView 
-                         data={treeData as [string, ...TreeItem[]]} 
+                         data={treeData } 
                          value = {selectedFile}
                       onSelect={handleFilesSelect}/>
 
