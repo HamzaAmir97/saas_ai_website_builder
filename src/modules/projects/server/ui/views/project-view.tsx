@@ -68,12 +68,12 @@ export const ProjectView = ({ projectId }: props) => {
                         <div className="w-full flex items-c p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md">
-                                   <Button variant={"ghost"}> <EyeIcon />   <span> Demo </span> </Button>
+                                   <Button variant={"ghost"}  className="focus:border-2 border-b-amber-500"> <EyeIcon />   <span> Demo </span> </Button>
 
                                 </TabsTrigger>
                                
-                                <TabsTrigger value="code" className="rounded-md">
-                                <Button variant={"ghost"}>  <Code2Icon /> <span> Code </span> </Button>
+                                <TabsTrigger value="code" className="rounded-md" >
+                                <Button variant={"ghost"} className="focus:border-2 border-b-amber-500">  <Code2Icon /> <span> Code </span> </Button>
 
                                 </TabsTrigger>
 
