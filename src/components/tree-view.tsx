@@ -2,23 +2,24 @@ import { TreeItem } from "../../types";
 
 
 interface TreeViewProps {
-    data:TreeItem,
+    data: TreeItem[],
     value : string |null,
     onSelect: (value : string) => void;
 
 }
 
 import React from 'react'
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider } from "./ui/sidebar";
-import { FileIcon } from "lucide-react";
-import { Collapsible } from "@radix-ui/react-collapsible";
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarProvider, SidebarRail } from "./ui/sidebar";
+import { ChevronsLeftRightIcon, ChevronsRightIcon, FileIcon, FolderIcon } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
+import { it } from "node:test";
 
 const TreeView = ({data,
     value,
    onSelect}:TreeViewProps) => {
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar collapsible="none" className="w-full">
 
        <SidebarContent>
 
@@ -30,10 +31,15 @@ const TreeView = ({data,
 
     <SidebarMenu>
    
-   <SidebarMenuItem>
-
-
-   </SidebarMenuItem>
+     {data.map((item: TreeItem, index: number) => (
+         <Tree 
+          key={index}
+          item={item}
+          SelectedValue={value}
+          onSelect={onSelect}
+          parentPath=""
+         />
+     ))}
 
 
     </SidebarMenu>
@@ -46,7 +52,7 @@ const TreeView = ({data,
 
 
        </SidebarContent>
-
+  <SidebarRail/>
 
       </Sidebar>
 
@@ -82,7 +88,7 @@ const Tree = ({item,
     className="data-[active=true]:bg-transparent"
     onClick={(()=>{})}>
          <FileIcon/>
-         <span className="trancate">
+         <span className="truncate">
 
             {name}
          </span>
@@ -94,9 +100,37 @@ const Tree = ({item,
     
     return (
         <SidebarMenuItem>
-         <Collapsible>
-         
-         
+         <Collapsible
+         className="group/collapsible {&[data-state=open]>button>svg:first-child}:rotate-90}"
+         defaultOpen
+
+
+         >
+           <CollapsibleTrigger asChild>
+           <SidebarMenuButton>
+           <ChevronsRightIcon className="transition-transform" />
+              <FolderIcon/>
+              <span className="truncate">
+                {name}
+              </span>
+           </SidebarMenuButton>
+           </CollapsibleTrigger>
+           
+
+
+           <CollapsibleContent>
+              <SidebarMenuSub>
+                {items.map((subItem, index) => (
+                  <Tree
+                    key={index}
+                    item={subItem}
+                    SelectedValue={SelectedValue}
+                    onSelect={onSelect}
+                    parentPath={currenPath}
+                  />
+                ))}
+              </SidebarMenuSub>
+           </CollapsibleContent>
          </Collapsible>
         </SidebarMenuItem>
       )
