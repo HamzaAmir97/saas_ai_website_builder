@@ -2,7 +2,7 @@ import { Fragment, useCallback, useMemo, useState } from 'react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './ui/resizable';
 import Hint from './hint';
 import { Button } from './ui/button';
-import { CopyIcon } from 'lucide-react';
+import { CopyCheckIcon, CopyIcon } from 'lucide-react';
 import CodeView from './code-view';
 import { convertFilesToTreeItems } from '@/lib/utils';
 import { TreeItem } from '../../types';
@@ -108,10 +108,10 @@ interface FileExplorerProps {
 
 const FileExplorer = ({ files }: FileExplorerProps) => {
     const [selectedFile, setSelectedFile] = useState<string | null>(() => {
-
         const fileKeys = Object.keys(files);
         return fileKeys.length > 0 ? fileKeys[0] : null;
-    })
+    });
+    const [copied, setCopied] = useState(false);
     const treeData = useMemo(() => {
         return convertFilesToTreeItems(files);
     }, [files]);
@@ -122,6 +122,15 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
         }
 
     }, [files])
+    const handleCopy=() => {
+        navigator.clipboard.writeText(files.selectedFile);
+        setCopied(true);
+         setTimeout(()=>{
+           setCopied(false )
+         },2000)
+      };
+
+
 
     return (
 
@@ -146,23 +155,23 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
                     <div className="h-full w-full flex-col">
 
                         <div className="border-b bg-sidebar px-4 py-2 flex justify-between items-center gap-x-2">
-
+                                         <FileBreadcrumb filePath={selectedFile}/>
                             <Hint text="copy to clipboard" side="bottom">
                                 <Button
                                     variant={"outline"}
                                     size="icon"
                                     className='ml-auto'
-                                    disabled={false}
-                                    onClick={() => { }}
+                                    disabled={copied}
+                                    onClick={handleCopy}
                                 >
-                                    <CopyIcon />
+                                   { copied  ? <CopyIcon /> : <CopyCheckIcon/>}
                                 </Button>
 
                             </Hint>
 
                         </div>
 
-                        <div className="flex overflow-auto">
+                        <div className="flex ">
                             <CodeView
                                 code={files[selectedFile]}
                                 lang={getLanguageFormExtension(selectedFile)}
