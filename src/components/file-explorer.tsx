@@ -26,7 +26,7 @@ interface FileBreadcrumbProps {
 
 const FileBreadcrumb = ({ filePath }: FileBreadcrumbProps) => {
     const pathSegmanets = filePath.split("/");
-    const maxSegments = 4;
+    const maxSegments = 3;
 
 
     const renderBredcrumbItems = () => {
