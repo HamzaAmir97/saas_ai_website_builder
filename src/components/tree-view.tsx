@@ -76,7 +76,7 @@ const Tree = ({item,
    parentPath,}:TreeProps) => {
 
     const [name ,...items] = Array.isArray(item) ? item : [item];
-    const currenPath= parentPath ? `${parentPath}/name` : name;
+    const currenPath= parentPath ? `${parentPath}/${name}` : name;
  
     if(!items.length){
     const isSelected = SelectedValue === currenPath;
