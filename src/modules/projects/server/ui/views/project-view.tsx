@@ -15,7 +15,6 @@ import { Code2Icon, CrownIcon, EyeIcon, SeparatorVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import FileExplorer from "@/components/file-explorer";
-import CodeView from "@/components/code-view";
 
 interface props {
     projectId: string,
@@ -84,14 +83,14 @@ export const ProjectView = ({ projectId }: props) => {
                                 <Button asChild size="sm" variant="default">
                                     <Link href="/pricing">
                                         <CrownIcon />
-                                        Upgrade
+                                        Upgr ade
                                     </Link>
                                 </Button>
                             </div>
                         </div>
 
                 
-                        <TabsContent value="preview">
+                        <TabsContent value="preview" >
                             {!!activeFragment && <FragmentWeb data={activeFragment} />}
 
                         </TabsContent>
