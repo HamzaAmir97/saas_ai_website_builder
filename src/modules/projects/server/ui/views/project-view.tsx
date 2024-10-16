@@ -80,10 +80,10 @@ export const ProjectView = ({ projectId }: props) => {
 
 
                             <div className="ml-auto flex items-center gap-x-2">
-                                <Button asChild size="sm" variant="default">
+                                <Button asChild size="sm" variant="tertiary">
                                     <Link href="/pricing">
                                         <CrownIcon />
-                                        Upgr ade
+                                        Upgrade
                                     </Link>
                                 </Button>
                             </div>
