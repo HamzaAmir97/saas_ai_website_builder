@@ -5,7 +5,7 @@ interface props{
     children : React.ReactNode
 }
 
-import React from 'react'
+
 
 const layout = ({children}:props) => {
   return (
