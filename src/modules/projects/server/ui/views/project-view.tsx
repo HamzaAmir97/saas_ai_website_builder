@@ -15,6 +15,7 @@ import { Code2Icon, CrownIcon, EyeIcon, SeparatorVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import FileExplorer from "@/components/file-explorer";
+import { UserControl } from "@/components/user-control";
 
 interface props {
     projectId: string,
@@ -86,6 +87,7 @@ export const ProjectView = ({ projectId }: props) => {
                                         Upgrade
                                     </Link>
                                 </Button>
+                                 <UserControl/>
                             </div>
                         </div>
 

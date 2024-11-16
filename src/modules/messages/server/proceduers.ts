@@ -2,12 +2,12 @@ import { Input } from "@/components/ui/input";
 import { InputOTP } from "@/components/ui/input-otp";
 import { inngest } from "@/inngest/client";
 import prisma from "@/lib/db";
-import { baseProcedure, createTRPCRouter } from "@/trpc/init";
+import { protectedProcedure, createTRPCRouter } from "@/trpc/init";
 import { z } from "zod";
 
 
 export const messagesRouter = createTRPCRouter({
-  getMany : baseProcedure
+  getMany : protectedProcedure
   .input(
     z.object({
     
@@ -32,7 +32,7 @@ export const messagesRouter = createTRPCRouter({
   
 
 
-  create : baseProcedure
+  create : protectedProcedure
      .input(
         z.object({
             value : z.string().min(1,{message: "Message is required"})
