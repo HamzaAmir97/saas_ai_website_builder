@@ -20,7 +20,7 @@ const Page = () => {
           /> */}
           <Bot  size={50} width={80}  height={80} className="hidden md:block text-primary animate-bounce "/>
           <TextRevealCard 
-        text="Hi   there , I am Codey"
+        text="Hi there I am Codey"
         revealText="Let's Make Th Magic Together"
         className=" bg-transparent text-center  font-semibold font-serif ml-10"  
         

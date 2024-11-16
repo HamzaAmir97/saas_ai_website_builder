@@ -14,6 +14,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { PROJECT_TEMPLATES } from "@/app/(home)/constants";
+import { useClerk } from "@clerk/nextjs";
 
 
 const formScema = z.object({
@@ -29,7 +30,7 @@ const ProjectForm = () => {
     const router =useRouter();
 
     const queryClient = useQueryClient();
-
+    const clerk=useClerk();
     const trpc = useTRPC();
     const form = useForm<z.infer<typeof formScema>>({
         resolver: zodResolver(formScema),
@@ -42,24 +43,20 @@ const ProjectForm = () => {
 
     const createProject = useMutation(trpc.projects.create.mutationOptions({
         onSuccess: (data) => {
-           
-            queryClient.invalidateQueries(
-
-       trpc.projects.getMany.queryOptions(),
-
-            );
-            router.push(`/projects/${data.id}`)
+            queryClient.invalidateQueries({ queryKey: trpc.projects.getMany.queryKey() });
+            router.push(`/projects/${data.id}`);
+            // TODO: Invalidate usage status
+          },
+          onError: (error) => {
+            toast.error(error.message);
+            if (error.data?.code === "UNAUTHORIZED") {
+              clerk.openSignIn();
+            }
           
-    //TODO Invaidate usage statues
+            // TODO: Redirect to pricing page if specific error
+          },
+    }));
 
-        },
-         onError :()=>{
-            //todo : redirect to pricing page if specifc
-            toast.error("error");
-    
-
-         }
-    }))
     const onSubmit = async (values: z.infer<typeof formScema>) => {
 
         await createProject.mutateAsync({
