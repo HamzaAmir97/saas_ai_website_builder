@@ -212,3 +212,9 @@
     }
   }
 }
+
+.graid{
+  background: #020024;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 39%, rgba(9, 12, 123, 1) 0%, rgba(6, 74, 164, 1) 73%, rgba(4, 127, 199, 1) 100%, rgba(0, 212, 255, 1) 100%);
+
+}
