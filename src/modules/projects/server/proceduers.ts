@@ -13,10 +13,11 @@ export const projectsRouter = createTRPCRouter({
      id:z.string().min(1, {message:"Id is requierd"}),
 
    }))
-  .query(async ({input})=>{
+  .query(async ({input,ctx})=>{
     const existingprojects= await prisma.project.findUnique({
      where:{
         id :input.id,
+        userId:ctx.auth.userId,
       },
     });
      
@@ -27,8 +28,13 @@ export const projectsRouter = createTRPCRouter({
   }),
   
   getMany : protectedProcedure
-  .query(async ()=>{
+  .query(async ({ ctx })=>{
     const projects= await prisma.project.findMany({
+     where :{
+    
+             userId : ctx.auth.userId,
+     },
+      
       orderBy:{
         updatedAt :"desc",
       },
