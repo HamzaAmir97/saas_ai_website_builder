@@ -10,6 +10,7 @@ import {
 } from "@inngest/agent-kit";
 import { getSandbox } from "./utils";
 import { Content } from "vaul";
+import { PROMPT } from "@/prompt";
 
 export const helloWorld = inngest.createFunction(
   { id: "hello-world" },
@@ -138,9 +139,11 @@ export const helloWorld = inngest.createFunction(
 
     const codeAgent = createAgent({
       name: "Summarizer",
-      system:
-        "You are an expert next js developer. you write readable maintainable code. you write simple next js & react snippets.",
-      model: gemini({ model: "gemini-2.0-flash" }),
+      system:PROMPT,
+      model: gemini({ model: "gemini-2.0-flash"
+             
+
+       }),
       tools: [terminalTool,createOrUpdateFiles,readFiles],
     });
 
