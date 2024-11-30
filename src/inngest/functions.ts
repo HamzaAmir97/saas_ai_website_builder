@@ -7,6 +7,7 @@ import {
   anthropic,
   gemini,
   createTool,
+  createNetwork,
 } from "@inngest/agent-kit";
 import { getSandbox, lastAssistantTextMessageContent } from "./utils";
 
@@ -150,13 +151,23 @@ export const helloWorld = inngest.createFunction(
         onResponse : async ({result,network})=>{
           const lastAssistantMessageText =
           lastAssistantTextMessageContent(result);
-          return result;
+          if(lastAssistantMessageText && network){
+           if(lastAssistantMessageText?.includes("<task_summary>")){
+             network.state.data.summary= lastAssistantMessageText;}
+          }
+
+           return result;
         }
       }
     });
 
+  
+    const network =  createNetwork ({
+        name: "coding-agent-network",
+        agents:[codeAgent],
+        maxIter:15,
 
-
+        });
 
     const { output } = await codeAgent.run(
       `write the following snippet: ${event.data.value}`
