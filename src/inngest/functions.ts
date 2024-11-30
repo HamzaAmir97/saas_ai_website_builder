@@ -1,21 +1,29 @@
 import { inngest } from "./client";
 import Sandbox from "@e2b/code-interpreter";
+import { z } from "zod";
 import {
-  createNetwork,
   createAgent,
   openai,
   anthropic,
   gemini,
+  createTool,
 } from "@inngest/agent-kit";
 import { getSandbox } from "./utils";
+import { Content } from "vaul";
 
 export const helloWorld = inngest.createFunction(
   { id: "hello-world" },
   { event: "test/hello.world" },
-  async ({ event ,step}) => {
-    const sandboxId = await step.run("get-sandbox-id",async()=>{
-       const sandbox = await Sandbox.create("vibe-nextjs-template-v2");
-     
+  async ({ event, step }) => {
+    const sandboxId = await step.run("get-sandbox-id", async () => {
+      const sandbox = await Sandbox.create("vibe-nextjs-template-v2");
+      return sandbox.sandboxId;
+    });
+
+    
+
+    //1- create  terminal tool
+
     const terminalTool = createTool({
       name: "terminal",
       description: "Use the terminal to run commands",
@@ -35,32 +43,123 @@ export const helloWorld = inngest.createFunction(
                 buffers.stderr += data;
               }
             });
-     
-       //  await sandbox.setTimeout(() => {
-        
-      //  }, timeout);
+            
+            return result.stdout;
+          } catch (err) {
+            console.error('command failed : ${err} \nstdout: ${buffers.stdout}\nstderr: ${buffers.stderr}'
 
-   return sandbox.sandboxId;
-    })
-    const codeAgent = createAgent({
-      model: gemini({ model: "gemini-2.0-flash" }),
-      name: "Summarizer",
-      system: "You are an expert next js developer. you write  readable mantainable code.you write simple next js & react snippets.",
+            );
+            return 'command failed : ${err} \nstdout: ${buffers.stdout}\nstderr: ${buffers.stderr}';
+          }
+        });
+      },
     });
-    const { output } = await codeAgent.run(
-      `write the following sippet: ${event.data.value}`
-    );
+
+
+     //2- create  CrateAndUpdate  tool
+ 
+   const createOrUpdateFiles = createTool({
+    name: "createOrUpdateFiles",
+    description: "create or Update files in the sandbox",
+     parameters: z.object({
+      files: z.array(
+        z.object({
+          path : z.string(),
+          content:z.string(),
+
+        })
+      ),
+    }),
+    handler: async ({ files}, { step,network }) => {
+      const newFiles= await step?.run("createOrUpdateFiles", async () => {
+        
+        try {
+          const updatedFiles = network.state.data.files || {};
+
+          const sandbox = await getSandbox(sandboxId);
+           for(const file of files){
+             await sandbox.files.write(file.path,file.content);
+             updatedFiles[file.path]= file.content;
+           }
+          
+       return updatedFiles;
+
+        } catch (err) {
+          console.error('command failed : ${err}');
+
+          return 'command failed : ${err}';
+        }
+      });
+
+       if (typeof newFiles=== "object"){
+        network.state.data.file= newFiles;
+       }
+    },
+  });
+
+     //3- create  readFiles  tool
+
+ const readFiles = createTool({
+  name: "readFiles",
+  description: "readFiles from sandbox",
+   parameters: z.object({
+    files: z.array( z.string()),
+      }),
+
+
+  handler: async ({ files}, { step }) => {
+    return await step?.run("readFiles", async () => {
     
-    const sandboxUrl = await step.run("get-sandbox-url",async()=>{
+      try {
+      
+        const sandbox = await getSandbox(sandboxId);
+        const contents =[];
+
+         for(const file of files){
+            const content = await sandbox.files.read(file);
+            contents.push({path:file ,content});
+         }
+        
+        return JSON.stringify(contents);
+
+      } catch (err) {
+        console.error('command failed : ${err}');
+        return 'command failed : ${err}';
+      }
+    });
+
      
+  },
+});
+
+
+
+    // create agent
+
+    const codeAgent = createAgent({
+      name: "Summarizer",
+      system:
+        "You are an expert next js developer. you write readable maintainable code. you write simple next js & react snippets.",
+      model: gemini({ model: "gemini-2.0-flash" }),
+      tools: [terminalTool,createOrUpdateFiles,readFiles],
+    });
+
+
+
+
+    const { output } = await codeAgent.run(
+      `write the following snippet: ${event.data.value}`
+    );
+
+
+ // run the sandbox
+
+    const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await getSandbox(sandboxId);
+      const host = await sandbox.getHost(3000);
+      return `https://${host}`;
+    });
 
-     const host = sandbox.getHost(3000);
-       
-     return 'https://${host}';
-
-    })
-     
-    return { output ,sandboxUrl };
+    return { output, sandboxUrl };
   }
 );
