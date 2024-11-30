@@ -1,5 +1,5 @@
 import { inngest } from "./client";
-import Sandbox from "@e2b/code-interpreter";
+import Sandbox, { Result } from "@e2b/code-interpreter";
 import { z } from "zod";
 import {
   createAgent,
@@ -8,8 +8,8 @@ import {
   gemini,
   createTool,
 } from "@inngest/agent-kit";
-import { getSandbox } from "./utils";
-import { Content } from "vaul";
+import { getSandbox, lastAssistantTextMessageContent } from "./utils";
+
 import { PROMPT } from "@/prompt";
 
 export const helloWorld = inngest.createFunction(
@@ -146,6 +146,13 @@ export const helloWorld = inngest.createFunction(
 
        }),
       tools: [terminalTool,createOrUpdateFiles,readFiles],
+      lifecycle:{
+        onResponse : async ({result,network})=>{
+          const lastAssistantMessageText =
+          lastAssistantTextMessageContent(result);
+          return result;
+        }
+      }
     });
 
 
