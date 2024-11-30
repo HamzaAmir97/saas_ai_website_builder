@@ -16,6 +16,25 @@ export const helloWorld = inngest.createFunction(
     const sandboxId = await step.run("get-sandbox-id",async()=>{
        const sandbox = await Sandbox.create("vibe-nextjs-template-v2");
      
+    const terminalTool = createTool({
+      name: "terminal",
+      description: "Use the terminal to run commands",
+      parameters: z.object({
+        command: z.string(),
+      }),
+      handler: async ({ command }, { step }) => {
+        return await step?.run("terminal", async () => {
+          const buffers = {stdout:"",stderr:""}
+          try {
+            const sandbox = await getSandbox(sandboxId);
+            const result = await sandbox.commands.run(command,{
+              onStdout :(data :string)=>{
+                   buffers.stdout += data;
+              },
+              onStderr:(data :string)=>{
+                buffers.stderr += data;
+              }
+            });
      
        //  await sandbox.setTimeout(() => {
         
