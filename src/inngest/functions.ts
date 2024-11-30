@@ -139,6 +139,7 @@ export const helloWorld = inngest.createFunction(
 
     const codeAgent = createAgent({
       name: "Summarizer",
+      description :"An expert Coding Agent",
       system:PROMPT,
       model: gemini({ model: "gemini-2.0-flash"
              
