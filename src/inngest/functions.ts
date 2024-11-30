@@ -12,6 +12,7 @@ import {
 import { getSandbox, lastAssistantTextMessageContent } from "./utils";
 
 import { PROMPT } from "@/prompt";
+import { Network } from "lucide-react";
 
 export const helloWorld = inngest.createFunction(
   { id: "hello-world" },
@@ -139,7 +140,7 @@ export const helloWorld = inngest.createFunction(
     // create agent
 
     const codeAgent = createAgent({
-      name: "Summarizer",
+      name: "codeAgent ",
       description :"An expert Coding Agent",
       system:PROMPT,
       model: gemini({ model: "gemini-2.0-flash"
@@ -163,11 +164,18 @@ export const helloWorld = inngest.createFunction(
 
   
     const network =  createNetwork ({
-        name: "coding-agent-network",
-        agents:[codeAgent],
-        maxIter:15,
-
-        });
+       name: "coding-agent-network",
+       agents:[codeAgent],
+       maxIter:15,
+       router : async({network})=>{
+         const summary = network.state.data.summary;
+         
+         if(summary){
+          return;
+         }
+         return codeAgent;
+       }
+    });
 
     const { output } = await codeAgent.run(
       `write the following snippet: ${event.data.value}`
