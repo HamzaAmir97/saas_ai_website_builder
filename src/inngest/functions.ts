@@ -9,11 +9,14 @@ import {
   createTool,
   createNetwork,
   type Tool,
+  type  Message,
+  createState,
 } from "@inngest/agent-kit";
 import { getSandbox, lastAssistantTextMessageContent } from "./utils";
 
 import { PROMPT, PROMPT2, PROMPT3 } from "@/prompt";
 import prisma from "@/lib/db";
+import { MessageCircleDashedIcon } from "lucide-react";
 
 interface AgentState{
      summary :string,
@@ -29,6 +32,39 @@ export const codeAgentFunction = inngest.createFunction(
       return sandbox.sandboxId;
     });
 
+    const previousMessages = await step.run("get-previous-messages", async () => {
+      const formattedMessages: Message[] = [];
+    
+      const messages = await prisma.message.findMany({
+        where: {
+          projectId: event.data.projectId,
+        },
+        orderBy: {
+          createdAt: "desc", //change to asc if AI not understand what is the last message 
+        },
+      });
+
+      for (const message of messages) {
+        formattedMessages.push({
+          type: "text",
+          role: message.role === "ASSISTANCE" ? "assistant" : "user",
+          content: message.content,
+        });
+      }
+      
+      return formattedMessages;
+      
+    });
+
+    const state = createState<AgentState>(
+      {
+        summary: "",
+        files: {},
+      },
+      {
+        messages: previousMessages,
+      },
+    );
 
 
     //1- create  terminal tool
@@ -236,6 +272,7 @@ export const codeAgentFunction = inngest.createFunction(
       name: "coding-agent-network",
       agents: [codeAgent],
       maxIter: 15,
+      defaultState : state,
       router: async ({ network }) => {
         const summary = network.state.data.summary;
 
@@ -253,7 +290,7 @@ export const codeAgentFunction = inngest.createFunction(
 
 
 
-    const result = await network.run(event.data.value);
+    const result = await network.run(event.data.value,{state :state});
 
 
 
