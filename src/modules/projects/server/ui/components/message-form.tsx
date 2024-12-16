@@ -13,6 +13,7 @@ import { useTRPC } from "@/trpc/client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Usage } from "./usage";
+import { useRouter } from "next/navigation";
 
 interface props {
     projectId: string,
@@ -33,6 +34,7 @@ const MessageForm = ({ projectId }: props) => {
     
     const queryClient = useQueryClient();
     const trpc = useTRPC();
+    const router =useRouter();
    
     const { data: usage } = useQuery(trpc.usage.status.queryOptions());
  
@@ -52,13 +54,23 @@ const MessageForm = ({ projectId }: props) => {
                     projectId: projectId,
                 })
             )
-            //TODO Invaidate usage statues
+           
+            queryClient.invalidateQueries(
+                trpc.usage.status.queryOptions()
+              );
 
         },
 
-        onError: () => {
-            //todo : redirect to pricing page if specifc
+        onError: (error) => {
+          
+
             toast.error("error");
+
+
+            if (error.data?.code === "TOO_MANY_REQUESTS") {
+                router.push("/pricing");
+              }
+
         }
     }))
     const onSubmit = async (values: z.infer<typeof formScema>) => {
@@ -73,7 +85,7 @@ const MessageForm = ({ projectId }: props) => {
       const isPending = createMessage.isPending;
       const isButtonDisbled = isPending || !form.formState.isValid;
       const [isFocuesd, setIsFocused] = useState(false);
-      const showUsage = !!usage;
+   const showUsage = !!usage;
 
     return (
         <Form {...form}>

@@ -45,7 +45,9 @@ const ProjectForm = () => {
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: trpc.projects.getMany.queryKey() });
             router.push(`/projects/${data.id}`);
-            // TODO: Invalidate usage status
+            queryClient.invalidateQueries(
+                trpc.usage.status.queryOptions()
+              );
           },
           onError: (error) => {
             toast.error(error.message);
@@ -53,7 +55,9 @@ const ProjectForm = () => {
               clerk.openSignIn();
             }
           
-            // TODO: Redirect to pricing page if specific error
+            if (error.data?.code === "TOO_MANY_REQUESTS") {
+                router.push("/pricing");
+              }
           },
     }));
 
