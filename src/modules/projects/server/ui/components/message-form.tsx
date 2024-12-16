@@ -10,8 +10,9 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "@/components/ui/button";
 import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { useTRPC } from "@/trpc/client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { Usage } from "./usage";
 
 interface props {
     projectId: string,
@@ -29,15 +30,17 @@ const formScema = z.object({
 
 
 const MessageForm = ({ projectId }: props) => {
+    
     const queryClient = useQueryClient();
-
     const trpc = useTRPC();
+   
+    const { data: usage } = useQuery(trpc.usage.status.queryOptions());
+ 
+
     const form = useForm<z.infer<typeof formScema>>({
         resolver: zodResolver(formScema),
         defaultValues: {
-
             value: "",
-
         }
     });
 
@@ -46,38 +49,40 @@ const MessageForm = ({ projectId }: props) => {
             form.reset();
             queryClient.invalidateQueries(
                 trpc.messages.getMany.queryOptions({
-                  projectId:projectId,
-
+                    projectId: projectId,
                 })
             )
-    //TODO Invaidate usage statues
+            //TODO Invaidate usage statues
 
         },
 
-         onError :()=>{
+        onError: () => {
             //todo : redirect to pricing page if specifc
             toast.error("error");
-    
-
-         }
+        }
     }))
     const onSubmit = async (values: z.infer<typeof formScema>) => {
-
+        
         await createMessage.mutateAsync({
             value: values.value,
             projectId,
         })
     }
-
-    const isPending = createMessage.isPending;
-    const isButtonDisbled = isPending || !form.formState.isValid;
-    const [isFocuesd, setIsFocused] = useState(false);
-    const showUsage = false;
-
+    
+    
+      const isPending = createMessage.isPending;
+      const isButtonDisbled = isPending || !form.formState.isValid;
+      const [isFocuesd, setIsFocused] = useState(false);
+      const showUsage = !!usage;
 
     return (
         <Form {...form}>
-
+            {showUsage && (
+                <Usage
+                    points={0}
+                    msBeforeNext={0}
+                />
+            )}
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className={cn("relative border p-4 pt-1 rounded-xl bg-sidebar transition-all",
@@ -134,14 +139,14 @@ const MessageForm = ({ projectId }: props) => {
                         {isPending ? (<Loader2Icon
                             className="size-4 animate-spin" />) :
                             (
-                                 <ArrowUpIcon />
+                                <ArrowUpIcon />
 
                             )
 
 
                         }
-                        
-                      
+
+
                     </Button>
                 </div>
             </form>

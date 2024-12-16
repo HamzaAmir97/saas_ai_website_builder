@@ -5,6 +5,8 @@ import { auth } from "@clerk/nextjs/server";
 const FREE_POINTS = 90;
 const DURATION = 30 * 24 * 60 * 60; // 30 days
 const GENERATION_COST = 1;
+
+
 export async function getUsageTracker() {
   const usageTracker = new RateLimiterPrisma({
     storeClient: prisma,
@@ -15,6 +17,7 @@ export async function getUsageTracker() {
 
   return usageTracker;
 };
+
 
 export async function consumeCredits() {
     const { userId } = await auth();
