@@ -12,7 +12,7 @@ import {
   type  Message,
   createState,
 } from "@inngest/agent-kit";
-import { getSandbox, lastAssistantTextMessageContent } from "./utils";
+import { getSandbox, lastAssistantTextMessageContent, parseAgentOutput } from "./utils";
 
 import { FRAGMENT_TITLE_PROMPT, PROMPT, PROMPT2, PROMPT3, RESPONSE_PROMPT } from "@/prompt";
 import prisma from "@/lib/db";
@@ -22,6 +22,16 @@ interface AgentState{
      summary :string,
      files : {[path :string]:string};
 };
+
+
+
+
+      //for parsing the message output
+
+   
+
+
+
 
 export const codeAgentFunction = inngest.createFunction(
   { id: "codeAgentFunction" },
@@ -320,34 +330,28 @@ export const codeAgentFunction = inngest.createFunction(
        output: responseOutput 
       } = await responseGenerator.run(result.state.data.summary);
 
+
+
+
       
       const generateFragmentTitle = () => {
-        if (fragmentTitleOutput[0].type !== "text") {
+        const output = fragmentTitleOutput[0];
+
+        if (output.type !== "text") {
           return "Fragment";
         }
       
-        if (Array.isArray(fragmentTitleOutput[0].content)) {
-          return fragmentTitleOutput[0].content.map((txt) => txt).join("");
+        if (Array.isArray(output.content)) {
+          return output.content.map((txt) => txt).join("");
         } else {
-          return fragmentTitleOutput[0].content;
+          return output.content;
         }
       };
 
 
 
 
-       
-      const generateResponse = () => {
-        if (responseOutput[0].type !== "text") {
-          return "Here We Go";
-        }
-      
-        if (Array.isArray(responseOutput[0].content)) {
-          return responseOutput[0].content.map((txt) => txt).join("");
-        } else {
-          return responseOutput[0].content;
-        }
-      };
+    
 
 
 
@@ -382,13 +386,13 @@ export const codeAgentFunction = inngest.createFunction(
       return await prisma.message.create({
         data:{
           projectId: event.data.projectId,
-          content: generateResponse(),
+          content: parseAgentOutput(responseOutput),
           role: "ASSISTANCE",
           type:"RESULT",
           fragment :{
               create:{
                 sandboxUrl : sandboxUrl,
-                title : generateFragmentTitle(),
+                title : parseAgentOutput(fragmentTitleOutput),
                  file : result.state.data.files,
           }
         }
