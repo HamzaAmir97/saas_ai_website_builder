@@ -11,10 +11,10 @@ import { toast, Toaster } from "sonner";
 const page = () => {
   const[value,setValue]=useState("");
   const trpc = useTRPC();
-  const invok = useMutation(trpc.invoke.mutationOptions({
+  const createdMeassge = useMutation(trpc.messages.create.mutationOptions({
      onSuccess : ()=>{
 
-        toast.success("Baground job started")
+        toast.success("Message created")
      }
 
   }));
@@ -23,7 +23,7 @@ const page = () => {
   return (
     <div  className='font-bold p-4  text-rose-500'>
       <Input value={value} onChange ={(e)=>setValue(e.target.value)} / >
-    <Button  onClick={()=>invok.mutate({value:value})}>
+    <Button disabled={createdMeassge.isPending} onClick={()=> createdMeassge.mutate({value:value})}>
    invok baground
 
     </Button>
