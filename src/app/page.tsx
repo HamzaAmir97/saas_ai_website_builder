@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input";
 import { useTRPC } from "@/trpc/client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast, Toaster } from "sonner";
 
@@ -11,6 +11,7 @@ import { toast, Toaster } from "sonner";
 const page = () => {
   const[value,setValue]=useState("");
   const trpc = useTRPC();
+  const {data :messages}= useQuery(trpc.messages.getMany.queryOptions());
   const createdMeassge = useMutation(trpc.messages.create.mutationOptions({
      onSuccess : ()=>{
 
@@ -27,6 +28,7 @@ const page = () => {
    invok baground
 
     </Button>
+    {JSON.stringify(messages,null,2)}
     <Toaster/>
     </div>
   )
