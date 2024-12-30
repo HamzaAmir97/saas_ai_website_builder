@@ -11,7 +11,7 @@ import {
 } from "@inngest/agent-kit";
 import { getSandbox, lastAssistantTextMessageContent } from "./utils";
 
-import { PROMPT } from "@/prompt";
+import { PROMPT, PROMPT2 } from "@/prompt";
 
 
 export const helloWorld = inngest.createFunction(
@@ -170,7 +170,7 @@ export const helloWorld = inngest.createFunction(
  const codeAgent = createAgent({
   name: "codeAgent ",
   description: "An expert Coding Agent",
-  system: PROMPT,
+  system: PROMPT2,
   model: gemini({
     model: "gemini-2.0-flash"
 
