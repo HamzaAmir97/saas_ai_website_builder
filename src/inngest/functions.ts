@@ -139,29 +139,29 @@ export const helloWorld = inngest.createFunction(
 
     // create  openAi agent
 
-    const openAiCodeAgent = createAgent({
-      name: "openAiCodeAgent ",
-      description: "An expert Coding Agent",
-      system: PROMPT,
-      model: openai({
-        model: "gpt-4o",
+    // const openAiCodeAgent = createAgent({
+    //   name: "openAiCodeAgent ",
+    //   description: "An expert Coding Agent",
+    //   system: PROMPT,
+    //   model: openai({
+    //     model: "gpt-4o",
       
-      }),
-      tools: [terminalTool, createOrUpdateFiles, readFiles],
-      lifecycle: {
-        onResponse: async ({ result, network }) => {
-          const lastAssistantMessageText =
-            lastAssistantTextMessageContent(result);
-          if (lastAssistantMessageText && network) {
-            if (lastAssistantMessageText?.includes("<task_summary>")) {
-              network.state.data.summary = lastAssistantMessageText;
-            }
-          }
+    //   }),
+    //   tools: [terminalTool, createOrUpdateFiles, readFiles],
+    //   lifecycle: {
+    //     onResponse: async ({ result, network }) => {
+    //       const lastAssistantMessageText =
+    //         lastAssistantTextMessageContent(result);
+    //       if (lastAssistantMessageText && network) {
+    //         if (lastAssistantMessageText?.includes("<task_summary>")) {
+    //           network.state.data.summary = lastAssistantMessageText;
+    //         }
+    //       }
 
-          return result;
-        }
-      }
-    });
+    //       return result;
+    //     }
+    //   }
+    // });
 
 
 
@@ -195,7 +195,7 @@ export const helloWorld = inngest.createFunction(
 
     const network = createNetwork({
       name: "coding-agent-network",
-      agents: [openAiCodeAgent],
+      agents: [codeAgent],
       maxIter: 15,
       router: async ({ network }) => {
         const summary = network.state.data.summary;
@@ -203,7 +203,7 @@ export const helloWorld = inngest.createFunction(
         if (summary) {
           return;
         }
-        return openAiCodeAgent;
+        return codeAgent;
       }
     });
 
