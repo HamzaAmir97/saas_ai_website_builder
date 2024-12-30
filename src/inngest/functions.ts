@@ -144,7 +144,7 @@ export const helloWorld = inngest.createFunction(
       description: "An expert Coding Agent",
       system: PROMPT,
       model: openai({
-        model: "chatgpt-4o-latest",
+        model: "gpt-4o",
       
       }),
       tools: [terminalTool, createOrUpdateFiles, readFiles],
