@@ -137,16 +137,15 @@ export const helloWorld = inngest.createFunction(
 
 
 
-    // create agent
+    // create  openAi agent
 
-    const codeAgent = createAgent({
-      name: "codeAgent ",
+    const openAiCodeAgent = createAgent({
+      name: "openAiCodeAgent ",
       description: "An expert Coding Agent",
       system: PROMPT,
-      model: gemini({
-        model: "gemini-2.0-flash"
-
-
+      model: openai({
+        model: "chatgpt-4o-latest",
+      
       }),
       tools: [terminalTool, createOrUpdateFiles, readFiles],
       lifecycle: {
@@ -165,9 +164,38 @@ export const helloWorld = inngest.createFunction(
     });
 
 
+
+ // create  gemini agent
+
+ const codeAgent = createAgent({
+  name: "codeAgent ",
+  description: "An expert Coding Agent",
+  system: PROMPT,
+  model: gemini({
+    model: "gemini-2.0-flash"
+
+
+  }),
+  tools: [terminalTool, createOrUpdateFiles, readFiles],
+  lifecycle: {
+    onResponse: async ({ result, network }) => {
+      const lastAssistantMessageText =
+        lastAssistantTextMessageContent(result);
+      if (lastAssistantMessageText && network) {
+        if (lastAssistantMessageText?.includes("<task_summary>")) {
+          network.state.data.summary = lastAssistantMessageText;
+        }
+      }
+
+      return result;
+    }
+  }
+});
+
+
     const network = createNetwork({
       name: "coding-agent-network",
-      agents: [codeAgent],
+      agents: [openAiCodeAgent],
       maxIter: 15,
       router: async ({ network }) => {
         const summary = network.state.data.summary;
@@ -175,7 +203,7 @@ export const helloWorld = inngest.createFunction(
         if (summary) {
           return;
         }
-        return codeAgent;
+        return openAiCodeAgent;
       }
     });
 
