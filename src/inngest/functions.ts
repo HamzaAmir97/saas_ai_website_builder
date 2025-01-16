@@ -16,7 +16,6 @@ import { getSandbox, lastAssistantTextMessageContent, parseAgentOutput } from ".
 
 import { FRAGMENT_TITLE_PROMPT, PROMPT, PROMPT2, PROMPT3, RESPONSE_PROMPT } from "@/prompt";
 import prisma from "@/lib/db";
-import { AwardIcon, MessageCircleDashedIcon } from "lucide-react";
 import { SANDBOX_TIMEOUT } from "./types";
 
 interface AgentState{
