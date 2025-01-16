@@ -33,7 +33,7 @@ const transition = {
       <motion.div 
       initial={{scale: 0 }}
       animate={{ scale: 1 }}
-      transition={{ duration: 2 ,delay :0.5 }}
+      transition={{ duration: 3 ,delay :0.5 }}
       className="flex  justify-center">
       <Bot  size={50} width={80}  height={80} className="hidden md:block text-primary animate-bounce "/>
 
@@ -70,7 +70,7 @@ const transition = {
         <motion.div
        initial={{ opacity: 0, y: 10 }}
        animate={{ opacity: 1, y: 0 }}
-       transition={{ duration: 1, delay: 1.5 }}
+       transition={{ duration: 2, delay: 1.5 }}
          className="text-lg md:text-xl text-muted-foreground text-center mb-2">
           By chatting with AI Agent Create <FlipWords words={words} />
         </motion.div>

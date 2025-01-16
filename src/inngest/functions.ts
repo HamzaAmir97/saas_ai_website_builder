@@ -234,10 +234,9 @@ export const codeAgentFunction = inngest.createFunction(
   system: PROMPT3,
   model: gemini({
     model: "gemini-2.0-flash",
-
-
-  }),
-
+  }
+  ),
+  
   tools: [terminalTool, createOrUpdateFiles, readFiles],
   lifecycle: {
     onResponse: async ({ result, network }) => {

@@ -1,9 +1,9 @@
 export const PROJECT_TEMPLATES = [
     {
-      emoji: "🎬",
-      title: "Build a Netflix clone",
+      emoji: "➗",
+      title: "Build a calculator app ",
       prompt:
-        "Build a Netflix-style homepage with a hero banner (use a nice, dark-mode compatible gradient here), movie sections, responsive cards, and a modal for viewing details using mock data and local state. Use dark mode.",
+      "Create a fully functional calculator app using The calculator should support: Basic arithmetic operations: addition, subtraction, multiplication, and division A clean and responsive UI with buttons for digits (0–9), operators (+, −, ×, ÷), decimal point, and clear/reset Real-time result display as users enter input Error handling (e.g., division by zero) Make sure it works on both desktop and mobile browsers."
     },
     {
       emoji: "📦",

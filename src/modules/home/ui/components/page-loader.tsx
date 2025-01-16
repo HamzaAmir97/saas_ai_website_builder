@@ -11,7 +11,7 @@ export default function PageLoading() {
     // Simulate page loading
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 1500)
+    }, 2000)
 
     return () => clearTimeout(timer)
   }, [])
