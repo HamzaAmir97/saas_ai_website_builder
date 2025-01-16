@@ -231,12 +231,13 @@ export const codeAgentFunction = inngest.createFunction(
  const codeAgent = createAgent<AgentState>({
   name: "codeAgent ",
   description: "An expert Coding Agent",
-  system: PROMPT3,
+  system: PROMPT,
   model: gemini({
-    model: "gemini-2.0-flash",
+    model: "gemini-1.5-flash",
 
 
   }),
+
   tools: [terminalTool, createOrUpdateFiles, readFiles],
   lifecycle: {
     onResponse: async ({ result, network }) => {
@@ -318,7 +319,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A fragment title generator",
       system: FRAGMENT_TITLE_PROMPT,
       model: gemini({
-        model: "gemini-2.5-flash",
+        model: "gemini-1.5-flash",
       }),
     });
 
@@ -327,7 +328,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "A response  generator",
       system: RESPONSE_PROMPT,
       model: gemini({
-        model: "gemini-2.5-flash",
+        model: "gemini-1.5-flash",
       }),
     });
 
