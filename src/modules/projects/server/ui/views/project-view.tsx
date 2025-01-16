@@ -76,7 +76,7 @@ export const ProjectView = ({ projectId }: props) => {
                                 <TabsTrigger value="preview" className="rounded-md  "> 
                                   <div
                             
-                                   className={cn("flex  justify-between  border-2 border-primary rounded-2xl hover:text-primary")}
+                                   className={cn("flex  justify-between  border-2 border-primary rounded-2xl hover:text-primary focus:outline-2")}
                                 
                                    > <EyeIcon   className="fill-primary stroke-current"/> <span  >Demo</span> </div>
                               
@@ -85,7 +85,7 @@ export const ProjectView = ({ projectId }: props) => {
                                 <TabsTrigger value="code" className="rounded-md ">
                                  <div
                             
-                                   className={cn("flex  justify-between  border-2 border-primary rounded-2xl hover:text-primary")}
+                                   className={cn("flex  justify-between  border-2 border-primary rounded-2xl hover:text-primary focus:outline-2")}
                                 
                                    > <Code2Icon className="fill-primary stroke-current" /> <span>Code</span></div>
                                 </TabsTrigger>
