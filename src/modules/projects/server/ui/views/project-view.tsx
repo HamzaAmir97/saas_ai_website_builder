@@ -74,15 +74,20 @@ export const ProjectView = ({ projectId }: props) => {
                         <div className="w-full flex items-center p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md  "> 
-                                  <Button 
-                                  variant={"ghost"}
-                                   className={cn("flex  justify-between")}
-                                   onClick={()=>{setButtonEnabled(!buttonEnabled);}}
-                                   ><EyeIcon  /> <span>Demo</span> </Button>
+                                  <div
+                            
+                                   className={cn("flex  justify-between  border-2 border-primary rounded-2xl hover:text-primary")}
+                                
+                                   > <EyeIcon   className="fill-primary stroke-current"/> <span  >Demo</span> </div>
+                              
                                 </TabsTrigger>
                                
                                 <TabsTrigger value="code" className="rounded-md ">
-                                 <Button variant={"ghost"} className="flex  justify-between "> <Code2Icon /> <span>Code</span></Button>
+                                 <div
+                            
+                                   className={cn("flex  justify-between  border-2 border-primary rounded-2xl hover:text-primary")}
+                                
+                                   > <Code2Icon className="fill-primary stroke-current" /> <span>Code</span></div>
                                 </TabsTrigger>
 
                             </TabsList>

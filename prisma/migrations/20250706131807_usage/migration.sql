@@ -8,6 +8,7 @@ CREATE TYPE "MessageType" AS ENUM ('RESULT', 'ERROR');
 CREATE TABLE "Project" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -38,6 +39,15 @@ CREATE TABLE "Fragment" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Fragment_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Usage" (
+    "key" TEXT NOT NULL,
+    "points" INTEGER NOT NULL,
+    "expire" TIMESTAMP(3),
+
+    CONSTRAINT "Usage_pkey" PRIMARY KEY ("key")
 );
 
 -- CreateIndex
