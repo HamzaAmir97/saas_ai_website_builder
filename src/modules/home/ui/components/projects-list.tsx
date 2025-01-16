@@ -6,6 +6,8 @@ import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { Bot } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
+import * as motion from "motion/react-client"
+import { scale } from "motion/react";
 
 export const ProjectsList = () => {
     const trpc = useTRPC();
@@ -17,6 +19,8 @@ export const ProjectsList = () => {
     return (
         <div className="w-full bg-white dark:bg-sidebar rounded-xl p-8 border flex flex-col
          gap-y-6 sm:gap-y-4">
+
+       
            <h2 className="text-2xl font-semibold">
            
           {user?.firstName}&apos;s projects
@@ -44,8 +48,9 @@ export const ProjectsList = () => {
       height={32}
       className="object-contain"
     /> */}
-     <Bot  width={32}  height={32} className="hidden md:block text-primary"/>
 
+     <Bot  width={32}  height={32} className="hidden md:block text-primary"/>
+      
     <div className="flex flex-col">
       <h3 className="">
         {project.name}
@@ -61,6 +66,7 @@ export const ProjectsList = () => {
     </Button>
   ))}
 </div>
+
         </div>
     );
 };

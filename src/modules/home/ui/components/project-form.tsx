@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { PROJECT_TEMPLATES } from "@/app/(home)/constants";
 import { useClerk } from "@clerk/nextjs";
+import AnimatedOutlinedBlock from "./AnimatedOutlinedBlock";
+
 
 
 const formScema = z.object({
@@ -84,8 +86,9 @@ const ProjectForm = () => {
 
 
     return (
-        <Form {...form}>
 
+       
+        <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className={cn("relative border p-4 pt-1 rounded-xl bg-sidebar transition-all",
@@ -155,7 +158,6 @@ const ProjectForm = () => {
             </form>
 
 
-
             <div className="flex-wrap justify-center gap-2 hidden md:flex max-w-3xl">
   {PROJECT_TEMPLATES.map((template) => (
     <Button
@@ -172,7 +174,7 @@ const ProjectForm = () => {
 </div>
 
         </Form>
-
+        
 
     )
 }

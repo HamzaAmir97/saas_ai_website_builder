@@ -101,7 +101,7 @@ export const ProjectView = ({ projectId }: props) => {
                         </TabsContent>
 
 
-                        <TabsContent value="code"   className="h-screen overflow-auto" >
+                        <TabsContent value="code"   className="h-screen min-h-0" >
                             {!!activeFragment?.file && (
                                 <FileExplorer 
                                     files={activeFragment.file as { [path: string]: string }}
