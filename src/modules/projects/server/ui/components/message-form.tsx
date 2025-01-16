@@ -24,7 +24,7 @@ interface props {
 const formScema = z.object({
     value: z.string()
         .min(1, { message: "Value is required" })
-        .max(1000, { message: "Value is too  long" }),
+        // .max(1000000, { message: "Value is too  long" }),
 
 });
 
@@ -43,7 +43,8 @@ const MessageForm = ({ projectId }: props) => {
         resolver: zodResolver(formScema),
         defaultValues: {
             value: "",
-        }
+        },
+        mode: "onChange" 
     });
 
     const createMessage = useMutation(trpc.messages.create.mutationOptions({
@@ -89,12 +90,12 @@ const MessageForm = ({ projectId }: props) => {
 
     return (
         <Form {...form}>
-            {showUsage && (
+            {/* {showUsage && (
                 <Usage
                     points={0}
                     msBeforeNext={0}
                 />
-            )}
+            )} */}
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className={cn("relative border p-4 pt-1 rounded-xl bg-sidebar transition-all",
