@@ -231,9 +231,9 @@ export const codeAgentFunction = inngest.createFunction(
  const codeAgent = createAgent<AgentState>({
   name: "codeAgent ",
   description: "An expert Coding Agent",
-  system: PROMPT,
+  system: PROMPT3,
   model: gemini({
-    model: "gemini-1.5-flash",
+    model: "gemini-2.0-flash",
 
 
   }),
