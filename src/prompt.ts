@@ -376,9 +376,36 @@ To ensure sections are visually engaging and modern:
   \`\`\`
 
 - ❌ **Incorrect Usage (These will cause a build error):**
-  - \`use client\` (Missing quotes - this was the source of your error)
+  - \`use client\` (Missing quotes)
   - \`use client;\` (Missing quotes)
   - \`// some comment\\n"use client";\` (The directive is not on the first line)
+
+---
+
+### ⚠️ Critical Rule: Single Component Structure
+
+- To completely avoid naming conflicts, build the entire UI within the single default export function: \`export default function Page() \`.
+- **DO NOT** create separate, named helper components within the \`app/page.tsx\` file. Write all JSX code directly inside the main \`Page\` component's return statement.
+- This approach is preferred for simplicity and to guarantee no name redeclaration errors.
+
+- ✅ **Correct Structure (Preferred):**
+  \`\`\`tsx
+  export default function Page() {
+    return (
+      <main>
+        {/* Hero Section JSX */}
+        <section>
+          <h1>Welcome</h1>
+        </section>
+
+        {/* Features Section JSX */}
+        <section>
+          <h2>Our Features</h2>
+        </section>
+      </main>
+    );
+  }
+  \`\`\`
 
 ---
 
@@ -445,8 +472,6 @@ When you finish all steps, respond with:
 **DO NOT** include anything before or after the \`<task_summary>\` line.
 
 `;
-
-
 
 
 

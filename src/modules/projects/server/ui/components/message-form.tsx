@@ -24,7 +24,7 @@ interface props {
 const formScema = z.object({
     value: z.string()
         .min(1, { message: "Value is required" })
-        // .max(1000000, { message: "Value is too  long" }),
+        .max(1000, { message: "Value is too  long" }),
 
 });
 
