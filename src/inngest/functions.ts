@@ -46,45 +46,61 @@ export const codeAgentFunction = inngest.createFunction(
       return sandbox.sandboxId;
     });
 
-    const previousMessages = await step.run("get-previous-messages", async () => {
-      const formattedMessages: Message[] = [];
+
+
+    // agent memory
+
+
+    // const previousMessages = await step.run("get-previous-messages", async () => {
+    //   const formattedMessages: Message[] = [];
     
-      const messages = await prisma.message.findMany({
-        where: {
-          projectId: event.data.projectId,
-        },
-        orderBy: {
-          createdAt: "desc", //change to asc if AI not understand what is the last message 
+    //   const messages = await prisma.message.findMany({
+    //     where: {
+    //       projectId: event.data.projectId,
+    //     },
+    //     orderBy: {
+    //       createdAt: "desc", //change to asc if AI not understand what is the last message 
        
-        },
+    //     },
          
        
-        take:5,
+    //     take:5,
 
-      });
+    //   });
 
-      for (const message of messages) {
-        formattedMessages.push({
-          type: "text",
-          role: message.role === "ASSISTANCE" ? "assistant" : "user",
-          content: message.content,
-        });
-      }
+    //   for (const message of messages) {
+    //     formattedMessages.push({
+    //       type: "text",
+    //       role: message.role === "ASSISTANCE" ? "assistant" : "user",
+    //       content: message.content,
+    //     });
+    //   }
       
-      return formattedMessages.reverse();
+    //   return formattedMessages;
       
-    });
+    // });
 
-    const state = createState<AgentState>(
-      {
-        summary: "",
-        files: {},
-      },
-      {
-        messages: previousMessages,
-      },
-    );
 
+
+
+    // //
+
+    // const state = createState<AgentState>(
+    //   {
+    //     summary: "",
+    //     files: {},
+    //   },
+    //   {
+    //     messages: previousMessages,
+    //   },
+
+      
+    // );
+
+
+
+
+     // build agents  tools >>>>
 
     //1- create  terminal tool
 
@@ -233,7 +249,7 @@ export const codeAgentFunction = inngest.createFunction(
   description: "An expert Coding Agent",
   system: PROMPT3,
   model: gemini({
-    model: "gemini-2.0-flash",
+    model: "gemini-2.5-flash",
   }
   ),
   
@@ -286,12 +302,39 @@ export const codeAgentFunction = inngest.createFunction(
 
 
 
-   // create network
+   // create network with  memory
+
+   
+    // const network = createNetwork<AgentState>({
+    //   name: "coding-agent-network",
+    //   agents: [codeAgent],
+    //   maxIter: 15,
+    //   defaultState : state,
+    //   router: async ({ network }) => {
+    //     const summary = network.state.data.summary;
+
+    //     if (summary) {
+    //       return;
+    //     }
+    //     return codeAgent;
+    //   }
+    // });
+
+
+
+
+    // const result = await network.run(event.data.value,{state :state});
+
+
+    
+
+     // create network without  memory
+
     const network = createNetwork<AgentState>({
       name: "coding-agent-network",
       agents: [codeAgent],
       maxIter: 15,
-      defaultState : state,
+      // defaultState : state,
       router: async ({ network }) => {
         const summary = network.state.data.summary;
 
@@ -303,13 +346,8 @@ export const codeAgentFunction = inngest.createFunction(
     });
 
 
-    // const { output } = await codeAgent.run(
-    //   `write the following snippet: ${event.data.value}`
-    // );
+    const result = await network.run(event.data.value);
 
-
-
-    const result = await network.run(event.data.value,{state :state});
 
 
    

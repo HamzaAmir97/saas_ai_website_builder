@@ -308,12 +308,20 @@ To ensure sections are visually engaging and modern:
 
 - Load fonts using \`next/font/google\` only:
 
+  ✅ **Correct usage:**
   \`\`\`tsx
   import { Cairo, Inter } from "next/font/google";
 
-  const inter = Inter({ subsets: ["latin"] });
-  const cairo = Cairo({ subsets: ["arabic"] });
+  const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+  const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo" });
   \`\`\`
+
+  ❌ **Common mistake to avoid:**
+  \`\`\`tsx
+  const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo"] }); // Incorrect - trailing ]
+  \`\`\`
+
+  🔒 **Rule:** Always close object literals with \`}\`, not \`]\`. Arrays like \`subsets: ["arabic"]\` must remain inside the object, not outside it.
 
 - Then apply fonts in JSX using:
 
@@ -344,7 +352,7 @@ To ensure sections are visually engaging and modern:
 ### File Safety Rules:
 
 - **Client Components Directive:** Any file using React hooks or browser APIs **MUST** start with \`"use client"\` **with double quotes** and **without semicolon**.
-  
+
   ✅ **Correct:** \`"use client"\`  
   ❌ **Wrong:** \`use client\` or \`'use client';\`
 
