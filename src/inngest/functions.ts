@@ -139,29 +139,29 @@ export const helloWorld = inngest.createFunction(
 
     // create  openAi agent
 
-    // const openAiCodeAgent = createAgent({
-    //   name: "openAiCodeAgent ",
-    //   description: "An expert Coding Agent",
-    //   system: PROMPT,
-    //   model: openai({
-    //     model: "gpt-4o",
+    const openAiCodeAgent = createAgent({
+      name: "openAiCodeAgent ",
+      description: "An expert Coding Agent",
+      system: PROMPT,
+      model: openai({
+        model: "gpt-4o",
       
-    //   }),
-    //   tools: [terminalTool, createOrUpdateFiles, readFiles],
-    //   lifecycle: {
-    //     onResponse: async ({ result, network }) => {
-    //       const lastAssistantMessageText =
-    //         lastAssistantTextMessageContent(result);
-    //       if (lastAssistantMessageText && network) {
-    //         if (lastAssistantMessageText?.includes("<task_summary>")) {
-    //           network.state.data.summary = lastAssistantMessageText;
-    //         }
-    //       }
+      }),
+      tools: [terminalTool, createOrUpdateFiles, readFiles],
+      lifecycle: {
+        onResponse: async ({ result, network }) => {
+          const lastAssistantMessageText =
+            lastAssistantTextMessageContent(result);
+          if (lastAssistantMessageText && network) {
+            if (lastAssistantMessageText?.includes("<task_summary>")) {
+              network.state.data.summary = lastAssistantMessageText;
+            }
+          }
 
-    //       return result;
-    //     }
-    //   }
-    // });
+          return result;
+        }
+      }
+    })
 
 
 
@@ -172,7 +172,7 @@ export const helloWorld = inngest.createFunction(
   description: "An expert Coding Agent",
   system: PROMPT2,
   model: gemini({
-    model: "gemini-2.0-flash"
+    model: "gemini-1.5-flash",
 
 
   }),
@@ -192,6 +192,35 @@ export const helloWorld = inngest.createFunction(
   }
 });
 
+
+ // create  anthropicCodeAgent
+
+ const anthropicCodeAgent = createAgent({
+  name: "anthropicCodeAgent ",
+  description: "An expert Coding Agent",
+  system: PROMPT2,
+  model: anthropic({
+    model: "claude-3-5-haiku-latest",
+    defaultParameters: { temperature: 0.5, max_tokens: 4096 },
+
+
+
+  }),
+  tools: [terminalTool, createOrUpdateFiles, readFiles],
+  lifecycle: {
+    onResponse: async ({ result, network }) => {
+      const lastAssistantMessageText =
+        lastAssistantTextMessageContent(result);
+      if (lastAssistantMessageText && network) {
+        if (lastAssistantMessageText?.includes("<task_summary>")) {
+          network.state.data.summary = lastAssistantMessageText;
+        }
+      }
+
+      return result;
+    }
+  }
+});
 
     const network = createNetwork({
       name: "coding-agent-network",
