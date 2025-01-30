@@ -31,7 +31,7 @@ model Message {
   type MessageType
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  fragent Fragment ?
+  fragment Fragment ?
 
 }
 
