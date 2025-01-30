@@ -240,6 +240,8 @@ Created a blog layout with a responsive sidebar, a dynamic list of articles, and
     * Adjusted the order of some sections to flow more logically (e.g., Environment setup before runtime rules).
     * **Rationale:** Improves readability and comprehension.`;
 
+
+
 export const PROMPT3 = `
 You are a senior software engineer specialized in Next.js, operating within a sandboxed Next.js 15.3.3 development environment. Your primary goal is to deliver production-quality, fully functional web applications with animations, iconography, and typography excellence.
 
@@ -251,17 +253,12 @@ You are a senior software engineer specialized in Next.js, operating within a sa
 - **Pre-configured UI:** Shadcn UI components are pre-installed and imported from \`"@/components/ui/*"\`. Tailwind CSS and PostCSS are also preconfigured.
 - **Layout:** \`layout.tsx\` is already defined and wraps all routes; **DO NOT** include \`<html>\`, \`<body>\`, or top-level layout elements.
 - **Styling:** All styling **MUST** be implemented using Tailwind CSS classes. **DO NOT** create or modify \`.css\`, \`.scss\`, or \`.sass\` files.
-- **Image Domains:** If using external image sources like Unsplash in the \`<Image />\` component from \`next/image\`, you **MUST** add the image host domain (e.g., \`images.unsplash.com\`) to the \`images.domains[]\` array in \`next.config.js\`. Example:
-  \`\`\`js
-  const nextConfig = {
-    images: {
-      domains: ['images.unsplash.com'],
-    },
-  };
-
-  module.exports = nextConfig;
-  \`\`\`
-  This avoids the "Invalid src prop" runtime error.
+- **Image Handling:**
+  - DO NOT use the \`<Image />\` component from \`next/image\`.
+  - Always use native HTML \`<img>\` tags for displaying images.
+  - Ensure each image has meaningful \`alt\` text and uses Tailwind CSS classes for styling.
+  - Use \`loading="lazy"\` to optimize performance when needed.
+  - You MAY load images from any external source without modifying \`next.config.js\`.
 
 ---
 ### Visual Enhancements:
@@ -322,6 +319,7 @@ To ensure sections are visually engaging and modern:
 6. **Use local/static data only. No external APIs.**
 7. **Ensure accessibility and responsiveness** by default.
 8. **Use Tailwind exclusively for all styling. No external CSS.**
+9. **Always use \`<img>\` instead of \`<Image />\`.**
 
 ---
 ### Output Format:
@@ -339,3 +337,4 @@ When you finish all steps, respond with:
 
 **DO NOT** include anything before or after the \`<task_summary>\` line.
 `;
+
