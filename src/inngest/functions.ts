@@ -1,6 +1,6 @@
 import { inngest } from "./client";
 import Sandbox from "@e2b/code-interpreter";
-import { z } from "zod";
+import { object, z } from "zod";
 import {
   createAgent,
   openai,
@@ -15,21 +15,14 @@ import { getSandbox, lastAssistantTextMessageContent } from "./utils";
 import { PROMPT, PROMPT2, PROMPT3 } from "@/prompt";
 import prisma from "@/lib/db";
 
-
- 
 interface AgentState{
-     summary: string;
-     files :{
-        [path : string]:string;
-     }
-
-
+     summary :string,
+     files : {[path :string]:string};
 };
 
-
-export const codeAgentFuntion = inngest.createFunction(
-  { id: "code-Agent" },
-  { event: "code-agent/run" },
+export const codeAgentFunction = inngest.createFunction(
+  { id: "codeAgentFunction" },
+  { event: "codeAgentFunction/run" },
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create("vibe-nextjs-template-v2");
@@ -86,7 +79,7 @@ export const codeAgentFuntion = inngest.createFunction(
           })
         ),
       }),
-      handler: async ({ files }, { step, network }:  Tool.Options<AgentState> ) => {
+      handler: async ({ files }, { step, network } : Tool.Options<AgentState>) =>  {
         const newFiles = await step?.run("createOrUpdateFiles", async () => {
 
           try {
@@ -237,8 +230,8 @@ export const codeAgentFuntion = inngest.createFunction(
 
 
 
-   // create the newtwork 
 
+   // create network
     const network = createNetwork<AgentState>({
       name: "coding-agent-network",
       agents: [codeAgent],
@@ -259,8 +252,11 @@ export const codeAgentFuntion = inngest.createFunction(
     // );
 
 
-    // run the network
+
     const result = await network.run(event.data.value);
+
+
+
     const isErorr=
     !result.state.data.summary ||
     Object.keys(result.state.data.files || {}).length === 0;
@@ -286,7 +282,6 @@ export const codeAgentFuntion = inngest.createFunction(
 
       }
 
-      
       //save the result to the database
       return await prisma.message.create({
         data:{
@@ -305,6 +300,7 @@ export const codeAgentFuntion = inngest.createFunction(
 
 
     });
+
 
     return {
       url: sandboxUrl,
