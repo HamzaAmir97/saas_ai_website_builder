@@ -22,13 +22,13 @@ const page = () => {
   
 
   return (
-    <div  className='font-bold p-4  text-rose-500'>
+    <div  className='font-bold p-4 flex flex-col gap-4  justify-center items-center h-full  text-rose-500'>
       <Input value={value} onChange ={(e)=>setValue(e.target.value)} / >
-    <Button disabled={createdMeassge.isPending} onClick={()=> createdMeassge.mutate({value:value})}>
-   invok baground
+    <Button className="text-white bg-rose-500 rounded-2xl size-xl"  disabled={createdMeassge.isPending} onClick={()=> createdMeassge.mutate({value:value})}>
+    Start Buliding my app
 
     </Button>
-    {JSON.stringify(messages,null,2)}
+    {/* {JSON.stringify(messages,null,2)} */}
     <Toaster/>
     </div>
   )
