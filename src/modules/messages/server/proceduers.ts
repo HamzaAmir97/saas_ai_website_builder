@@ -1,3 +1,5 @@
+import { Input } from "@/components/ui/input";
+import { InputOTP } from "@/components/ui/input-otp";
 import { inngest } from "@/inngest/client";
 import prisma from "@/lib/db";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
@@ -22,11 +24,14 @@ export const messagesRouter = createTRPCRouter({
      .input(
         z.object({
             value : z.string().min(1,{message: "Message is required"})
+            .max(1000,{message : "Value is too long "}),
+            projectId : z.string().min(1,{message:"project Id is required"}),
         })
      )
      .mutation(async ({input})=>{
       const createdMessage = await prisma.message.create({
             data : {
+                projectId : input.projectId,
                 content : input.value,
                 role : "USER",
                 type : "RESULT",
@@ -41,6 +46,7 @@ export const messagesRouter = createTRPCRouter({
           data : {
 
            value : input.value,
+           projectId : input.projectId,
         }
 
       })
