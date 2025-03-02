@@ -9,6 +9,17 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
+
+
+model Project {
+  id    String   @id @default(uuid())
+  name String 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages  Message[]
+
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -31,7 +42,10 @@ model Message {
   type MessageType
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  projectId String
+  project  Project @relation(fields:[projectId] ,references:[id ],onDelete : Cascade)
   fragment Fragment ?
+
 
 }
 
@@ -45,3 +59,4 @@ model Fragment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 } 
+
