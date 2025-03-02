@@ -286,7 +286,7 @@ export const codeAgentFunction = inngest.createFunction(
       //save the result to the database
       return await prisma.message.create({
         data:{
-          project: event.data.projectId,
+          projectId: event.data.projectId,
           content:result.state.data.summary,
           role: "ASSISTANCE",
           type:"RESULT",
