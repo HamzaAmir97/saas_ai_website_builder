@@ -1,6 +1,6 @@
 import { inngest } from "./client";
 import Sandbox from "@e2b/code-interpreter";
-import { object, z } from "zod";
+import { z } from "zod";
 import {
   createAgent,
   openai,
