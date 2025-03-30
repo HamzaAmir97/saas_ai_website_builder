@@ -270,11 +270,12 @@ export const codeAgentFunction = inngest.createFunction(
       return `https://${host}`;
     });
 
+    
     await  step.run("save-result",async()=>{
       if (isErorr){
        return await prisma.message.create({
          data:{
-          project: event.data.projectId,
+          projectId: event.data.projectId,
            content :"somthing went wrong . plese try agian, ",
            role : "ASSISTANCE",
            type :"ERROR",
