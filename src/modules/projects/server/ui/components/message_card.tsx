@@ -1,6 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { MessageRole ,Fragment,MessageType} from '@/generated/prisma'
 import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
 
 
 interface  MessageCardPrpos{
@@ -66,13 +67,17 @@ isActiveFragment,
    )}>
   <div className="flex items-center gap-2 pl-2 mb-2">
       <span className='text-sm font-medium'> Codey</span>
-      <span className='text-sm font-medium'> 
-        
-        
+      <span className='text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100'> 
+        {format(createdAt , "HH:mm ' on' MMM dd , yyy")}
+
       </span>
 
   </div>
+   <div className="pl-8.5 flex flex-col gap-y-4">
 
+   <span>{content}</span>
+
+   </div>
    </div>
 
   )
