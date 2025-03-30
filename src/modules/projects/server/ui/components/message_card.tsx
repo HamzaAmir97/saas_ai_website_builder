@@ -1,4 +1,7 @@
+import { Card } from '@/components/ui/card';
 import { MessageRole ,Fragment,MessageType} from '@/generated/prisma'
+import { cn } from '@/lib/utils';
+
 
 interface  MessageCardPrpos{
     content: string ;
@@ -10,6 +13,71 @@ interface  MessageCardPrpos{
      type :MessageType;
 
 };
+
+interface UserMessageProps{
+    content : string;
+}
+
+
+interface AssistanceMessageProps{
+       
+    content:string,
+    fragment:Fragment | null;
+    createdAt:Date;
+    isActiveFragment:boolean;
+    onFragmentClick:(fragment :Fragment)=>void
+    type:MessageType,
+}
+
+
+
+const UserMessage=({content}:UserMessageProps)=>{
+      return(
+   <div className=' flex justify-end pb-4 pr-2 pl-10'>
+    <Card className='rounded-lg bg-muted p-3 shadow-none border-none max-w-[80%
+    break-words'>
+
+        {content}
+
+
+    </Card>
+
+   </div>
+
+      )
+}
+
+
+const AssistanceMessage =({
+  
+ content,
+ fragment,
+ createdAt,
+isActiveFragment,
+ onFragmentClick,
+ type,
+}:AssistanceMessageProps)=>{
+
+  return(
+
+   <div  className={cn(
+      "flex flex-col group px-2 pb-4",
+      type ==="ERROR"&&"text-red-700 dark:text-red-500",
+   )}>
+  <div className="flex items-center gap-2 pl-2 mb-2">
+      <span className='text-sm font-medium'> Codey</span>
+      <span className='text-sm font-medium'> 
+        
+        
+      </span>
+
+  </div>
+
+   </div>
+
+  )
+
+}
 
 const MessageCard = ({
     content,
@@ -25,13 +93,22 @@ const MessageCard = ({
     if(role === "ASSISTANCE"){
   return (
     
-        <p>Assistance</p>
+        <AssistanceMessage 
+       
+        content={content}
+       
+        fragment={fragment}
+        createdAt={createdAt}
+        isActiveFragment={isActiveFragment}
+        onFragmentClick={onFragmentClick}
+        type={type}
+        />
   )}
 
      
     return (
       
-          <p>User</p>
+          <UserMessage content={content}/>
     )
   
    
