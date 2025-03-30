@@ -1,6 +1,7 @@
 import { useTRPC } from '@/trpc/client';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import React from 'react'
+import MessageCard from './message_card';
 
 
 interface props {
@@ -12,7 +13,7 @@ interface props {
 const MessagesContainer = ({ projectId }: props) => {
     const trpc = useTRPC();
 
-    const { data : messages } = useSuspenseQuery(trpc.messages.getMany.queryOptions({
+    const {data: messages } = useSuspenseQuery(trpc.messages.getMany.queryOptions({
         projectId: projectId ,
     }));
 
@@ -21,13 +22,18 @@ const MessagesContainer = ({ projectId }: props) => {
     <div className=' flex flex-col flex-1 min-h-0 '>
         <div className=' flex-1 min-h-0 overflow-y-auto'>
   <div  className='pt-2 pr-1'>
-     <MessageCard
-       key = {messages.id}
-       content= {messages.content}
-       role= {messages.role}
-       fragment = {messages.fragment }/>
-
-
+     {messages.map((message) => (
+       <MessageCard
+         key={message.id}
+         content={message.content}
+         role={message.role}
+         fragment={message.fragment}
+         createdAt={message.createdAt}
+         isActiveFragment={false}
+         onFragmentClick={() => {}}
+         type={message.type}
+       />
+     ))}
   </div>
 
         </div>
