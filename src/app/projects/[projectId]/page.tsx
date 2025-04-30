@@ -1,3 +1,4 @@
+
 import React, { Suspense } from 'react'
 import { ProjectView } from '@/modules/projects/server/ui/views/project-view';
 import { getQueryClient, trpc } from '@/trpc/server';
