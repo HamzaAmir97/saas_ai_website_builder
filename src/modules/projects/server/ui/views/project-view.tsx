@@ -1,3 +1,4 @@
+"use client";
 
 import {
     ResizableHandle,
@@ -30,16 +31,16 @@ export const ProjectView = ({ projectId }: props) => {
                     minSize={20}
                     className="flex flex-col min-h-0"
                 > 
-                   <Suspense fallback={<p>loading project .... </p>}>
+                   {/* <Suspense fallback={<p>loading project .... </p>}> */}
                     <ProjectHeader projectId={projectId} />
-                    </Suspense>
+                    {/* </Suspense> */}
                    
-                    <Suspense fallback={<p>Loading ...</p>}>
+                 {/* <Suspense fallback={<p>Loading ...</p>}> */}
                         <MessagesContainer projectId={projectId}
                             activeFragment={activeFragment}
                             setActiveFragment={setactiveFragment}
                         />
-                    </Suspense>
+                    {/* </Suspense> */}
                 </ResizablePanel>
 
                 <ResizableHandle withHandle />
