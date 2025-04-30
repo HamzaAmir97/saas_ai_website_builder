@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import MessageCard from './message_card';
 import MessageForm from './message-form';
 import { Fragment } from '@/generated/prisma';
+import { MessageLoading } from './message-loading';
 
 
 interface props {
@@ -26,17 +27,20 @@ const MessagesContainer = ({
   }));
 
   useEffect(() => {
-    const lastAssistanceMessage = messages.findLast(
-      (message) => message.role === "ASSISTANCE"
+    const lastAssistanceMessageWithFragment = messages.findLast(
+      (message) => message.role === "ASSISTANCE" && !! message.fragment,
     );
-    if (lastAssistanceMessage) {
-      setActiveFragment(lastAssistanceMessage.fragment);
+    if (lastAssistanceMessageWithFragment) {
+      setActiveFragment(lastAssistanceMessageWithFragment.fragment);
     }
   }, [messages, setActiveFragment]);
 
   useEffect(() => {
     buttonRef.current?.scrollIntoView();
   }, [messages.length]);
+
+   const lastMessage= messages[messages.length-1];
+   const isLastMessagUser=lastMessage?.role === "USER";
 
   return (
     <div className='flex flex-col flex-1 min-h-0'>
@@ -54,6 +58,7 @@ const MessagesContainer = ({
               type={message.type}
             />
           ))}
+          { isLastMessagUser && <MessageLoading/>}
           <div ref={buttonRef} />
         </div>
       </div>
