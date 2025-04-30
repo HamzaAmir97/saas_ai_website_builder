@@ -32,14 +32,14 @@ const MessagesContainer = ({
 
   }));
 
-  useEffect(() => {
-    const lastAssistanceMessageWithFragment = messages.findLast(
-      (message) => message.role === "ASSISTANCE" && !! message.fragment,
-    );
-    if (lastAssistanceMessageWithFragment) {
-      setActiveFragment(lastAssistanceMessageWithFragment.fragment);
-    }
-  }, [messages, setActiveFragment]);
+  // useEffect(() => {
+  //   const lastAssistanceMessageWithFragment = messages.findLast(
+  //     (message) => message.role === "ASSISTANCE" && !! message.fragment,
+  //   );
+  //   if (lastAssistanceMessageWithFragment) {
+  //     setActiveFragment(lastAssistanceMessageWithFragment.fragment);
+  //   }
+  // }, [messages, setActiveFragment]);
 
   useEffect(() => {
     buttonRef.current?.scrollIntoView();
