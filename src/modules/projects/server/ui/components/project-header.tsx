@@ -4,7 +4,8 @@ import { DropdownMenuSeparator, DropdownMenuSub } from '@/components/ui/dropdown
 import { useTRPC } from '@/trpc/client';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { ChevronDownIcon, ChevronLeftIcon, SunMediumIcon } from 'lucide-react';
+import { ChevronDownIcon, ChevronLeftIcon, Laptop2, MoonIcon, SunIcon, SunMediumIcon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -18,6 +19,8 @@ const ProjectHeader = ({ projectId }: props) => {
     const { data: project } = useSuspenseQuery(
         trpc.projects.getOne.queryOptions({ id: projectId })
     );
+    
+    const {setTheme,theme}=useTheme();
 
     return (
         <header className=' p-2 flex justify-between items-center border-b'>
@@ -63,14 +66,17 @@ const ProjectHeader = ({ projectId }: props) => {
                      <DropdownMenuPortal>
                          <DropdownMenuSubContent>
 
-                            <DropdownMenuRadioGroup value='Light' onValueChange={()=>{}}>
-                              <DropdownMenuRadioItem value='Light'>
+                            <DropdownMenuRadioGroup value='Light' onValueChange={()=>{ setTheme}}>
+                              <DropdownMenuRadioItem value='Light' >
+                                <SunIcon/>
                                 <span>Light</span>
                               </DropdownMenuRadioItem>
                               <DropdownMenuRadioItem value='Dark'>
+                                <MoonIcon/>
                                 <span>Dark</span>
                               </DropdownMenuRadioItem>
                               <DropdownMenuRadioItem value='System'>
+                                <Laptop2/>
                                 <span>System</span>
                               </DropdownMenuRadioItem>
                             </DropdownMenuRadioGroup>
