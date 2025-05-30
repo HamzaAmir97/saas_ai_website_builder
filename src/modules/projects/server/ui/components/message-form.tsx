@@ -5,6 +5,10 @@ import { Form, FormField } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { Button } from "@/components/ui/button";
+import { ArrowUpIcon, Loader2Icon } from "lucide-react";
+import { useTRPC } from "@/trpc/client";
+import { useMutation } from "@tanstack/react-query";
 
 interface props {
     projectId: string,
@@ -23,22 +27,31 @@ const formScema = z.object({
 
 const MessageForm = ({ projectId }: props) => {
 
+    const trpc = useTRPC();
+    const form = useForm<z.infer<typeof formScema>>({
+        resolver:zodResolver(formScema) ,
+        defaultValues:{
+            
+            value:"",
+            
+        }
+    });
+    const createMessage = useMutation(trpc.messages.create.mutationOptions({
+        
+    }))
+    const onSubmit= async(values:z.infer<typeof formScema>)=>{
+        
+        await  createMessage.mutateAsync({
+              value :values.value,
+              projectId,
+        })
+    }
+
+    const isPending = createMessage.isPending;
+    const isButtonDisbled = isPending || !form.formState.isValid;
     const [isFocuesd,setIsFocused]= useState(false);
     const showUsage = false;
 
-     const form = useForm<z.infer<typeof formScema>>({
-     resolver:zodResolver(formScema) ,
-     defaultValues:{
-
-    value:"",
-
-  }
-     });
-
- const onSubmit= (values:z.infer<typeof formScema>)=>{
-
-   console.log(values);
- }
 
   return (
     <Form {...form}>
@@ -59,6 +72,7 @@ const MessageForm = ({ projectId }: props) => {
        
         <TextareaAutosize
           {...field}
+          disabled={isPending}
           onFocus={()=>setIsFocused(true)}
           onBlur={()=>setIsFocused(false)}
           minRows={2}
@@ -89,8 +103,23 @@ const MessageForm = ({ projectId }: props) => {
      &nbsp;to Submit
 
      </div>
+     
+  <Button  
+  disabled={isButtonDisbled}
+  className={cn("size-8 rounded-full",
+    isButtonDisbled && "bg-muted-foreground border"
+  )}> 
+     {isPending ? ( <Loader2Icon
+        className="size-4 animate-spin" />):
+        (
+             <ArrowUpIcon/>
 
-
+        )
+ 
+     
+    }
+      <ArrowUpIcon/>
+  </Button>
   </div>
      </form>
        
