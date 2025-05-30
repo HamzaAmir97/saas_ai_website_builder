@@ -6,10 +6,10 @@ interface props {
 
 import React from 'react'
 
-const messageForm = ({ projectId }: props) => {
+const MessageForm = ({ projectId }: props) => {
   return (
     <div>message-form</div>
   )
 }
 
-export default messageForm 
+export default MessageForm 
