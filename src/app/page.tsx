@@ -4,10 +4,10 @@ import React from 'react'
 
 
 const page = async () => {
-  const users = await prisma.user.findMany();
+  const posts = await prisma.post.findMany();
   return (
     <div  className='font-bold  text-rose-500'>
-       {JSON.stringify(users,null,2)}
+       {JSON.stringify(posts,null,2)}
       
     </div>
   )
