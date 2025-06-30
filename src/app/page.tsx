@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div  className='font-bold  text-rose-500'>
       
-      <Button> clicl me</Button>
+      <Button variant={'danger'}> clicl me</Button>
     </div>
   )
 }
