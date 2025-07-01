@@ -57,6 +57,8 @@ export const ProjectView = ({ projectId }: props) => {
 
                 <ResizablePanel defaultSize={65} minSize={50}>
                 
+
+
                 <Tabs
                         className="h-full gap-y-0"
                         defaultValue="preview"
@@ -65,13 +67,13 @@ export const ProjectView = ({ projectId }: props) => {
                     >
 
                         {/* Header section: triggers + buttons */}
-                        <div className="w-full flex items-c p-2 border-b gap-x-2">
+                        <div className="w-full flex items-center p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
-                                <TabsTrigger value="preview" className="rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3">
+                                <TabsTrigger value="preview" className="rounded-md ">
                                    <EyeIcon /> <span>Demo</span>
                                 </TabsTrigger>
                                
-                                <TabsTrigger value="code" className="rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3">
+                                <TabsTrigger value="code" className="rounded-md ">
                                    <Code2Icon /> <span>Code</span>
                                 </TabsTrigger>
 
@@ -93,13 +95,13 @@ export const ProjectView = ({ projectId }: props) => {
                         </div>
 
                 
-                        <TabsContent value="preview" >
+                        <TabsContent value="preview" className="h-screen overflow-auto" >
                             {!!activeFragment && <FragmentWeb data={activeFragment} />}
 
                         </TabsContent>
 
 
-                        <TabsContent value="code" className="min-h-0">
+                        <TabsContent value="code"   className="h-screen overflow-auto" >
                             {!!activeFragment?.file && (
                                 <FileExplorer 
                                     files={activeFragment.file as { [path: string]: string }}
