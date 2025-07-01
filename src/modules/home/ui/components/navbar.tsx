@@ -33,7 +33,7 @@ export const Navbar = () => {
     {/* <Image src="/logo.svg" alt="Vibe" width={24} height={24} /> */}
     <Bot   width={24}  height={24} className="hidden md:block text-primary"/>
 
-    <span className="font-semibold text-lg">Codey</span>
+    <span className="font-Molle text-lg">Codey</span>
   </Link>
 
     <DropdownMenu>

@@ -23,8 +23,8 @@ const Page = () => {
           <Bot  size={50} width={80}  height={80} className="hidden md:block text-primary animate-bounce "/>
           <TextRevealCard 
         text="Hi there I am Codey"
-        revealText="Let's Make Th Magic Together"
-        className=" bg-transparent text-center  font-semibold font-serif ml-10"  
+        revealText="Let's Make Some Magic"
+        className="font-Aladin  bg-transparent text-center  text-3xl   ml-50"  
         
         >   </TextRevealCard>
        
@@ -44,7 +44,7 @@ const Page = () => {
 
       {/* <div className="  max-w-2xl gap-2 w-full "> */}
 
-          <p className=" flex justify-center mt-20  "><b>Built with</b> <span className="text-3xl mx-1 mb-0 animate-bounce">❤️</span>  <b> By Hamzah Amir </b> </p>
+          <p className=" flex justify-center mt-20  font-Molle  "><b>Built with</b> <span className="text-3xl mx-1 mb-0 animate-bounce">❤️</span>  <b> By Hamzah Amir </b> </p>
       {/* </div> */}
     </div>
     

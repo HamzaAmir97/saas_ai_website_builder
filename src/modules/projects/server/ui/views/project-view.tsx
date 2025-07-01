@@ -70,11 +70,11 @@ export const ProjectView = ({ projectId }: props) => {
                         <div className="w-full flex items-center p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
                                 <TabsTrigger value="preview" className="rounded-md ">
-                                  <div className="flex gap-2"><EyeIcon /> <span>Demo</span></div> 
+                                  <div className="flex  justify-between"><EyeIcon /> <span>Demo</span></div> 
                                 </TabsTrigger>
                                
                                 <TabsTrigger value="code" className="rounded-md ">
-                                <div className="flex gap-2">  <Code2Icon /> <span>Code</span></div>
+                                <div className="flex  justify-between">  <Code2Icon /> <span>Code</span></div>
                                 </TabsTrigger>
 
                             </TabsList>
