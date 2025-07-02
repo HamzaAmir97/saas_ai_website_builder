@@ -107,6 +107,7 @@ isActiveFragment,
        height={18}
       className="shrink-0"
       />
+         <p className="text-s font-semibold">Codey</p>
       <span className='text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100'> 
         {format(createdAt , "HH:mm ' on' MMM dd , yyy")}
 
