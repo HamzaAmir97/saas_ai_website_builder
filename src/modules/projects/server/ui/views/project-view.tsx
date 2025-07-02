@@ -17,21 +17,33 @@ import Link from "next/link";
 import FileExplorer from "@/components/file-explorer";
 import { UserControl } from "@/components/user-control";
 import { useAuth } from "@clerk/nextjs";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { ErrorBoundary } from "react-error-boundary";
 
 interface props {
     projectId: string,
-
-
 };
 
+// Error fallback component
+const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => {
+    return (
+        <div className="p-4 text-center">
+            <h2 className="text-lg font-semibold text-red-600 mb-2">Something went wrong</h2>
+            <p className="text-sm text-gray-600 mb-4">{error.message}</p>
+            <button
+                onClick={resetErrorBoundary}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+                Try again
+            </button>
+        </div>
+    );
+};
 
 export const ProjectView = ({ projectId }: props) => {
     const [activeFragment, setactiveFragment] = useState<Fragment | null>(null);
     const [tabState, setTabState] = useState<"preview" | "code">("preview");
     const { has } = useAuth();
     const hasProAccess = has?.({ plan: "pro" });
-
 
     return (
         <div className="h-screen" >
@@ -41,7 +53,7 @@ export const ProjectView = ({ projectId }: props) => {
                     minSize={20}
                     className="flex flex-col min-h-0"
                 >
-                    <ErrorBoundary errorComponent={() => <p> Failed to load project ....</p>}>
+                   <ErrorBoundary FallbackComponent={ErrorFallback}>
                         <Suspense fallback={<p>loading project .... </p>}>
                             <ProjectHeader projectId={projectId} />
                         </Suspense>
@@ -52,13 +64,10 @@ export const ProjectView = ({ projectId }: props) => {
                                 setActiveFragment={setactiveFragment}
                             />
                         </Suspense>
-                    </ErrorBoundary>
+                        </ErrorBoundary>
                 </ResizablePanel>
 
                 <ResizableHandle className="hover:bg-primary transition-colors" />
-
-
-
 
                 <ResizablePanel defaultSize={65} minSize={50}>
                 

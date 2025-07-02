@@ -31,12 +31,9 @@ const Page = () => {
        
         
 
-        <p className="text-lg md:text-xl text-muted-foreground text-center  mb-2">
-    
- 
-   
-        By chatting with AI Agent  Create <FlipWords words={words} />  
-   </p>
+        <div className="text-lg md:text-xl text-muted-foreground text-center mb-2">
+          By chatting with AI Agent Create <FlipWords words={words} />
+        </div>
   <div className="max-w-3xl mx-auto w-full mt-10">
     <ProjectForm />
 </div>
@@ -45,7 +42,7 @@ const Page = () => {
 
       {/* <div className="  max-w-2xl gap-2 w-full "> */}
 
-          <p className=" flex justify-center mt-20  "><b>Built with</b> <p className="text-3xl mx-1 mb-0 animate-bounce">❤️</p>  <b> By Hamzah Amir </b> </p>
+          <p className=" flex justify-center mt-20  "><b>Built with</b> <span className="text-3xl mx-1 mb-0 animate-bounce">❤️</span>  <b> By Hamzah Amir </b> </p>
       {/* </div> */}
     </div>
     

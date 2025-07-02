@@ -148,38 +148,53 @@ export const TextRevealCardDescription = ({
 };
 
 const Stars = () => {
-  const randomMove = () => Math.random() * 4 - 2;
-  const randomOpacity = () => Math.random();
-  const random = () => Math.random();
+  // Create deterministic random values using a seed
+  const seededRandom = (seed: number) => {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  };
+
+  const randomMove = (seed: number) => seededRandom(seed) * 4 - 2;
+  const randomOpacity = (seed: number) => seededRandom(seed);
+  const random = (seed: number) => seededRandom(seed);
+  
   return (
     <div className="absolute inset-0">
-      {[...Array(80)].map((_, i) => (
-        <motion.span
-          key={`star-${i}`}
-          animate={{
-            top: `calc(${random() * 100}% + ${randomMove()}px)`,
-            left: `calc(${random() * 100}% + ${randomMove()}px)`,
-            opacity: randomOpacity(),
-            scale: [1, 1.2, 0],
-          }}
-          transition={{
-            duration: random() * 10 + 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{
-            position: "absolute",
-            top: `${random() * 100}%`,
-            left: `${random() * 100}%`,
-            width: `2px`,
-            height: `2px`,
-            backgroundColor: "white",
-            borderRadius: "50%",
-            zIndex: 1,
-          }}
-          className="inline-block"
-        ></motion.span>
-      ))}
+      {[...Array(80)].map((_, i) => {
+        const seed = i * 0.1; // Use index as seed for deterministic positioning
+        const topPos = random(seed) * 100;
+        const leftPos = random(seed + 1) * 100;
+        const opacity = randomOpacity(seed + 2);
+        const duration = random(seed + 3) * 10 + 20;
+        
+        return (
+          <motion.span
+            key={`star-${i}`}
+            animate={{
+              top: `calc(${topPos}% + ${randomMove(seed + 4)}px)`,
+              left: `calc(${leftPos}% + ${randomMove(seed + 5)}px)`,
+              opacity: opacity,
+              scale: [1, 1.2, 0],
+            }}
+            transition={{
+              duration: duration,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              position: "absolute",
+              top: `${topPos}%`,
+              left: `${leftPos}%`,
+              width: `2px`,
+              height: `2px`,
+              backgroundColor: "white",
+              borderRadius: "50%",
+              zIndex: 1,
+            }}
+            className="inline-block"
+          ></motion.span>
+        );
+      })}
     </div>
   );
 };
