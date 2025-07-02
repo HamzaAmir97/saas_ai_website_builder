@@ -45,15 +45,15 @@ export const Navbar = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
-        <DropdownMenuItem onClick={() => setTheme("light")} className="flex font-bold  text-muted-foreground">
+        <DropdownMenuItem onClick={() => setTheme("light")} className="flex font-bold  text-muted-foreground  cursor-pointer">
         <SunIcon className="mr-2" />
         <span>Light</span>
         </DropdownMenuItem  >
-        <DropdownMenuItem onClick={() => setTheme("dark")} className="flex font-bold  text-muted-foreground">
+        <DropdownMenuItem onClick={() => setTheme("dark")} className="flex font-bold  text-muted-foreground cursor-pointer">
         <MoonIcon className="mr-2" />
         <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")} className="flex font-bold  text-muted-foreground">
+        <DropdownMenuItem onClick={() => setTheme("system")} className="flex font-bold  text-muted-foreground cursor-pointer">
         <Laptop2 className="mr-2" />
         <span>System</span>
         </DropdownMenuItem>

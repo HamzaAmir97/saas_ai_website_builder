@@ -36,6 +36,7 @@ enum MessageType{
  ERROR
 
 }
+
 model Message {
   id    String   @id @default(uuid())
   content String 
