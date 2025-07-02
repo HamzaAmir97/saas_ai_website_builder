@@ -18,26 +18,12 @@ import FileExplorer from "@/components/file-explorer";
 import { UserControl } from "@/components/user-control";
 import { useAuth } from "@clerk/nextjs";
 import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "@/app/error";
 
 interface props {
     projectId: string,
 };
 
-// Error fallback component
-const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => {
-    return (
-        <div className="p-4 text-center">
-            <h2 className="text-lg font-semibold text-red-600 mb-2">Something went wrong</h2>
-            <p className="text-sm text-gray-600 mb-4">{error.message}</p>
-            <button
-                onClick={resetErrorBoundary}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-                Try again
-            </button>
-        </div>
-    );
-};
 
 export const ProjectView = ({ projectId }: props) => {
     const [activeFragment, setactiveFragment] = useState<Fragment | null>(null);
@@ -81,14 +67,12 @@ export const ProjectView = ({ projectId }: props) => {
                         {/* Header section: triggers + buttons */}
                         <div className="w-full flex items-c p-2 border-b gap-x-2">
                             <TabsList className="h-8 p-0 border rounded-md">
-                                <TabsTrigger value="preview" className="rounded-md">
-                                   <Button variant={"ghost"}  className="focus:border-2 border-b-amber-500"> <EyeIcon />   <span> Demo </span> </Button>
-
+                                <TabsTrigger value="preview" className="rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3">
+                                   <EyeIcon /> <span>Demo</span>
                                 </TabsTrigger>
                                
-                                <TabsTrigger value="code" className="rounded-md" >
-                                <Button variant={"ghost"} className="focus:border-2 border-b-amber-500">  <Code2Icon /> <span> Code </span> </Button>
-
+                                <TabsTrigger value="code" className="rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3">
+                                   <Code2Icon /> <span>Code</span>
                                 </TabsTrigger>
 
                             </TabsList>
