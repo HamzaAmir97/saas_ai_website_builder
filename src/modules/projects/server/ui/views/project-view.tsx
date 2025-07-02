@@ -17,6 +17,7 @@ import Link from "next/link";
 import FileExplorer from "@/components/file-explorer";
 import { UserControl } from "@/components/user-control";
 import { useAuth } from "@clerk/nextjs";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 interface props {
     projectId: string,
@@ -40,16 +41,18 @@ export const ProjectView = ({ projectId }: props) => {
                     minSize={20}
                     className="flex flex-col min-h-0"
                 >
-                    {/* <Suspense fallback={<p>loading project .... </p>}> */}
-                        <ProjectHeader projectId={projectId} />
-                    {/* </Suspense> */}
-
-                    {/* <Suspense fallback={<p>Loading ...</p>}> */}
-                        <MessagesContainer projectId={projectId}
-                            activeFragment={activeFragment}
-                            setActiveFragment={setactiveFragment}
-                        />
-                    {/* </Suspense> */}
+                    <ErrorBoundary errorComponent={() => <p> Failed to load project ....</p>}>
+                        <Suspense fallback={<p>loading project .... </p>}>
+                            <ProjectHeader projectId={projectId} />
+                        </Suspense>
+                        
+                        <Suspense fallback={<p>Loading ...</p>}>
+                            <MessagesContainer projectId={projectId}
+                                activeFragment={activeFragment}
+                                setActiveFragment={setactiveFragment}
+                            />
+                        </Suspense>
+                    </ErrorBoundary>
                 </ResizablePanel>
 
                 <ResizableHandle className="hover:bg-primary transition-colors" />

@@ -3,6 +3,7 @@ import React, { Suspense } from 'react'
 import { ProjectView } from '@/modules/projects/server/ui/views/project-view';
 import { getQueryClient, trpc } from '@/trpc/server';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 
  interface props{
     params : Promise<{
@@ -27,9 +28,12 @@ const page = async ({params}:props) => {
 
   return (
     <HydrationBoundary state={ dehydrate(queryClient)}>
-      <Suspense fallback={<p>Loadoing...</p>}>
+     
+     <ErrorBoundary errorComponent={() => <p>Something went wrong</p>}>
+      <Suspense fallback={<p>Loading...</p>}>
      < ProjectView projectId= {projectId} / >
      </Suspense>
+     </ErrorBoundary>
       </HydrationBoundary>
   )
 }
