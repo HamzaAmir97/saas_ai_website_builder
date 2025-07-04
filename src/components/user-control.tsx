@@ -1,5 +1,6 @@
 "use client";
 
+import { useCurrentTheme } from "@/hooks/use-current-theme";
 import { UserButton } from "@clerk/nextjs";
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export const UserControl = ({ showName }: Props) => {
+ const currentTheme=useCurrentTheme();
+
   return (
     <UserButton
       showName={showName}
