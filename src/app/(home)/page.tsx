@@ -19,7 +19,7 @@ const Page = () => {
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground text-center  mb-2">
-    Create apps and websites by chatting with AI
+    Create apps and websites by chatting with AI Agent
    </p>
   <div className="max-w-3xl mx-auto w-full mt-10">
     <ProjectForm />
