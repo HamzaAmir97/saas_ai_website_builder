@@ -15,7 +15,7 @@ const Page = () => {
           />
         </div>
         <h1 className="text-2xl md:text-5xl font bold text-center mb-2">
-         Let's Create Magic
+         Let's Create Magic Togather
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground text-center  mb-2">
