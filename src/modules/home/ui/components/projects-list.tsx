@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import { Bot } from "lucide-react";
 
 export const ProjectsList = () => {
     const trpc = useTRPC();
@@ -33,13 +34,15 @@ export const ProjectsList = () => {
     >
      <Link href={`/projects/${project.id}`}>
   <div className="flex items-center gap-x-4">
-    <Image
+    {/* <Image
       src="/logo.svg"
       alt="Codey"
       width={32}
       height={32}
       className="object-contain"
-    />
+    /> */}
+     <Bot  width={32}  height={32} className="hidden md:block text-primary"/>
+
     <div className="flex flex-col">
       <h3 className="">
         {project.name}

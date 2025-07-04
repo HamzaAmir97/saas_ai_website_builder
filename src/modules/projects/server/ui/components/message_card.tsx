@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { MessageRole ,Fragment,MessageType} from '@/generated/prisma'
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-import { ChevronRightIcon, Code2Icon } from 'lucide-react';
+import { Bot, ChevronRightIcon, Code2Icon } from 'lucide-react';
 import Image from 'next/image';
 
 
@@ -100,13 +100,15 @@ isActiveFragment,
       type ==="ERROR"&&"text-red-700 dark:text-red-500",
    )}>
   <div className="flex items-center gap-2 pl-2 mb-2">
-      <Image
+      {/* <Image
        src ="/logo.svg"
        alt ="Codey"
        width={18}
        height={18}
       className="shrink-0"
-      />
+      /> */}
+    <Bot  size={50} width={18}  height={18} className="hidden animate-bounce   md:block text-primary"/>
+
          <p className="text-s font-semibold">Codey</p>
       <span className='text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100'> 
         {format(createdAt , "HH:mm ' on' MMM dd , yyy")}

@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useTRPC } from '@/trpc/client';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { ChevronDownIcon, ChevronLeftIcon, Laptop2, MoonIcon, SunIcon, SunMediumIcon } from 'lucide-react';
+import { Bot, ChevronDownIcon, ChevronLeftIcon, Laptop2, MoonIcon, SunIcon, SunMediumIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -44,7 +44,11 @@ const ProjectHeader = ({ projectId }: props) => {
               size="sm"
               className="focus-visible:ring-0 hover:bg-transparent hover:opacity-75 transition-opacity pl-2!"
             >
-              <Image src="/logo.svg" alt="codey" width={18} height={18} />
+              {/* <Image src="/logo.svg" alt="codey" width={18} height={18} /> */}
+           
+              <Bot  size={18} width={18}  height={18} className="hidden md:block text-primary"/>
+
+           
             </Button>
             <span className="text-sm font-medium">{project.name}</span>
             <ChevronDownIcon />
