@@ -1,3 +1,4 @@
+import { TextRevealCard } from "@/components/ui/text-reveal-card";
 import ProjectForm from "@/modules/home/ui/components/project-form";
 import { ProjectsList } from "@/modules/home/ui/components/projects-list";
 import { Bot } from "lucide-react";
@@ -16,10 +17,17 @@ const Page = () => {
             className="hidden md:block"
           /> */}
           <Bot  size={50} width={80}  height={80} className="hidden md:block text-primary animate-bounce "/>
+          <TextRevealCard 
+        text="Let's Create Magic Together"
+        revealText="Let's Create Magic Together"
+        className=" bg-transparent text-center"  
+        
+        >   </TextRevealCard>
+       
         </div>
-        <h1 className="text-2xl md:text-5xl font bold text-center mb-2">
-         Let's Create Magic Togather
-        </h1>
+       
+       
+        
 
         <p className="text-lg md:text-xl text-muted-foreground text-center  mb-2">
     Create apps and websites by chatting with AI Agent
