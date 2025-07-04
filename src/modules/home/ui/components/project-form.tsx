@@ -70,7 +70,7 @@ const ProjectForm = () => {
     
     const onSelect = (value: string) => {
         form.setValue("value", value, {
-            shouldDirty: true,    // تصحيح: shouldnirty → shouldDirty
+            shouldDirty: true,    
             shouldValidate: true,
             shouldTouch: true,
         });
@@ -107,7 +107,7 @@ const ProjectForm = () => {
                             minRows={2}
                             maxRows={8}
                             className="pt-4 resize-none border-none w-full outline-none bg-transparent"
-                            placeholder="what whould you like to build?"
+                            placeholder="what would you like to build?"
                             onKeyDown={(e) => {
                                 if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
                                     e.preventDefault();
