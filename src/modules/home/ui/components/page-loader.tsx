@@ -32,17 +32,17 @@ export default function PageLoading() {
           >
             {/* Animated loading spinner with gradient */}
         
-         {/* <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-primary/30 border-l-transparent" /> */}
+         <div className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-primary/30 border-l-transparent" />
           
 
-
+{/* 
           <DotLottieReact
-          src="/animations/loading-animation.lottie "
+          src="/animations/load.lottie"
           loop
           autoplay
          
-          className=' flex w-70 '
-        />
+       
+        /> */}
         
           </motion.div>
 

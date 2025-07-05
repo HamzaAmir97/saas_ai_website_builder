@@ -89,13 +89,15 @@ const transition = {
 
           <div className=" flex justify-center mt-10 ml-0 mr-0 font-Molle  "><b  className="m-0 " >Built with</b> 
             
-          <DotLottieReact
+          {/* <DotLottieReact
           src="/animations/heart.lottie "
           loop
           autoplay
        
           className='w-30  m-0  animate-bounce'
-        />
+        /> */}
+
+        <span className=" m-0  animate-bounce " > ❤️</span>
         
             <b className="m-0 " > By Hamzah Amir </b> </div>
       {/* </div> */}
