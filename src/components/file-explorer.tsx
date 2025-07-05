@@ -5,10 +5,13 @@ import { Button } from './ui/button';
 import { CopyCheckIcon, CopyIcon } from 'lucide-react';
 import CodeView from './code-view';
 import { convertFilesToTreeItems } from '@/lib/utils';
-import { TreeItem } from '../../types';
 import { TreeView } from './tree-view';
-import path from 'path';
-import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from './ui/breadcrumb';
+import { Breadcrumb, 
+    BreadcrumbEllipsis, 
+    BreadcrumbItem, 
+    BreadcrumbList,
+     BreadcrumbPage, 
+    BreadcrumbSeparator } from './ui/breadcrumb';
 
 
 
@@ -19,6 +22,8 @@ function getLanguageFormExtension(filename: string): string {
     return extnsion || "text";
 
 };
+
+
 interface FileBreadcrumbProps {
     filePath: string,
 
@@ -99,6 +104,8 @@ const FileBreadcrumb = ({ filePath }: FileBreadcrumbProps) => {
     )
 };
 
+
+
 interface FileExplorerProps {
     files: FileCollection,
 
@@ -109,27 +116,45 @@ interface FileExplorerProps {
 const FileExplorer = ({ files }: FileExplorerProps) => {
     const [selectedFile, setSelectedFile] = useState<string | null>(() => {
         const fileKeys = Object.keys(files);
+
+        console.log(fileKeys);
+
         return fileKeys.length > 0 ? fileKeys[0] : null;
     });
+
+
     const [copied, setCopied] = useState(false);
+
+
+
     const treeData = useMemo(() => {
         return convertFilesToTreeItems(files);
     }, [files]);
+
+
+
     const handleFilesSelect = useCallback((filepath: string) => {
 
         if (files[filepath]) {
+           
             setSelectedFile(filepath);
         }
 
     }, [files])
-    const handleCopy=() => {
-        navigator.clipboard.writeText(files.selectedFile);
-        setCopied(true);
-         setTimeout(()=>{
-           setCopied(false )
-         },2000)
-      };
 
+
+
+
+
+    const handleCopy = () => {
+        if (!selectedFile) return;
+        navigator.clipboard.writeText(files[selectedFile]);
+        setCopied(true);
+        setTimeout(() => {
+            setCopied(false);
+        }, 2000);
+    };
+    
 
 
     return (
@@ -140,7 +165,8 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
                 <TreeView
                     data={treeData}
                     value={selectedFile}
-                    onSelect={handleFilesSelect} />
+                    onSelect={handleFilesSelect}
+                   />
 
             </ResizablePanel>
 
@@ -152,7 +178,7 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
 
                 {selectedFile && files[selectedFile] ? (
 
-                    <div className="h-full w-full flex-col">
+                    <div className="h-full w-full flex flex-col">
 
                         <div className="border-b bg-sidebar px-4 py-2 flex justify-between items-center gap-x-2">
                                          <FileBreadcrumb filePath={selectedFile}/>
@@ -171,7 +197,7 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
 
                         </div>
 
-                        <div className="flex ">
+                        <div className="flex-1 overflow-auto ">
                             <CodeView
                                 code={files[selectedFile]}
                                 lang={getLanguageFormExtension(selectedFile)}

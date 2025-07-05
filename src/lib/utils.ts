@@ -2,21 +2,14 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import { type TreeItem } from "../../types";
-import { Message } from "@inngest/agent-kit";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-/**
- * Convert a record of files to a tree structure.
- * @param files - Record of file paths to content
- * @returns Tree structure for TreeView component
- *
- * @example
- * Input: { "src/Button.tsx": "...", "README.md": "..." }
- * Output: [["src", "Button.tsx"], "README.md"]
- */
+
+
+
 export function convertFilesToTreeItems(
   files: Record<string, string>
 ): TreeItem[] {

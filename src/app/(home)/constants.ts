@@ -3,55 +3,54 @@ export const PROJECT_TEMPLATES = [
     emoji: "🏘️",
     title: "Build a real estate website",
     prompt:
-      "Build a modern, responsive real estate website that allows users to browse, search, and filter property listings. The website should include essential features like a homepage with featured listings, property detail pages, contact forms, and an admin dashboard for managing listings. Use a clean and professional UI/UX design.",
+      "Build a modern, responsive real estate website that allows users to browse, search, and filter property listings. The website should include essential features like a homepage with featured listings, property detail pages, contact forms, and an admin dashboard for managing listings. Add a language toggle (Arabic/English) and a dark/light theme switcher for a better user experience. Use a clean and professional UI/UX design.",
   },
   {
     emoji: "➗",
-    title: "Build a calculator app ",
+    title: "Build a calculator app",
     prompt:
-      "Create a fully functional calculator app using The calculator should support: Basic arithmetic operations: addition, subtraction, multiplication, and division A clean and responsive UI with buttons for digits (0–9), operators (+, −, ×, ÷), decimal point, and clear/reset Real-time result display as users enter input Error handling (e.g., division by zero) Make sure it works on both desktop and mobile browsers.",
-  }, 
+      "Create a fully functional calculator app supporting basic arithmetic operations: addition, subtraction, multiplication, and division. It should have a responsive UI with buttons for digits (0–9), operators (+, −, ×, ÷), decimal point, and clear/reset. Show real-time results and handle errors (e.g., division by zero). Include a language toggle (Arabic/English) and theme switcher (Dark/Light). Ensure it works on both desktop and mobile browsers.",
+  },
   {
     emoji: "📦",
     title: "Build an admin dashboard",
     prompt:
-      "Create an admin dashboard with a sidebar, stat cards, a chart placeholder, and a basic table with filter and pagination using local state. Use clear visual grouping and balance in your design for a modern, professional look.",
+      "Create an admin dashboard with a sidebar, stat cards, a chart placeholder, and a table with filter and pagination using local state. Add a global language toggle (Arabic/English) and a theme switcher (Dark/Light) in the top bar. Prioritize modern and clean visual design with clear grouping.",
   },
   {
     emoji: "🗂️",
     title: "Build a file manager",
     prompt:
-      "Build a file manager with folder list, file grid, and options to rename or delete items using mock data and local state. Focus on spacing, clear icons, and visual distinction between folders and files.",
+      "Build a file manager with folder list, file grid, and options to rename or delete items using mock data and local state. Include UI controls for switching theme (Dark/Light) and changing language (Arabic/English). Ensure clear iconography and spacing between files and folders.",
   },
   {
     emoji: "📺",
     title: "Build a YouTube clone",
     prompt:
-      "Build a YouTube-style homepage with mock video thumbnails, a category sidebar, and a modal preview with title and description using local state. Ensure clean alignment and a well-organized grid layout.",
+      "Build a YouTube-style homepage with mock video thumbnails, a category sidebar, and a modal preview. Include a language toggle and a theme switcher to simulate a real-life, user-friendly media platform. Maintain clean alignment and responsive grid layout.",
   },
   {
     emoji: "🛍️",
     title: "Build a store page",
     prompt:
-      "Build a store page with category filters, a product grid, and local cart logic to add and remove items. Focus on clear typography, spacing, and button states for a great e-commerce UI.",
+      "Build a store page with category filters, a product grid, and local cart logic. Add controls to switch between Arabic/English and toggle between dark and light themes. Prioritize accessible typography, smooth interactions, and mobile responsiveness.",
   },
-
   {
     emoji: "🏡",
     title: "Build an Airbnb clone",
     prompt:
-      "Build an Airbnb-style listings grid with mock data, filter sidebar, and a modal with property details using local state. Use card spacing, soft shadows, and clean layout for a welcoming design.",
+      "Create an Airbnb-style listings grid using mock data, a filter sidebar, and modal property details using local state. Implement a theme switcher and language toggle to simulate internationalization. Use cards with soft shadows, spacing, and a clean layout.",
   },
   {
     emoji: "🎵",
     title: "Build a Spotify clone",
     prompt:
-      "Build a Spotify-style music player with a sidebar for playlists, a main area for song details, and playback controls. Use local state for managing playback and song selection. Prioritize layout balance and intuitive control placement for a smooth user experience. Use dark mode.",
+      "Design a Spotify-style music player with playlist sidebar, song detail area, and playback controls. Use dark mode by default, but include a theme switcher for light mode. Also, add a language toggle for Arabic/English. Ensure intuitive layout and playback management.",
   },
   {
     emoji: "🥡",
     title: "Build a Chinese restaurant landing page",
     prompt:
-      "Create a landing page for a Chinese restaurant that features a visually appealing hero section with the restaurant’s name, a catchy tagline, and a background image showcasing delicious Chinese dishes. The page should include a menu preview with images and prices of popular items, an 'About Us' section that briefly tells the story of the restaurant, and a contact section with the phone number, address, opening hours, and optionally a contact form or embedded map. The design should be responsive, use traditional Chinese color themes like red, gold, and black, and maintain a clean, modern layout. You can also add extra features like customer reviews, a reservation button, or delivery options if needed.",
+      "Create a landing page with a hero section, menu preview, About Us, and contact details. Use traditional Chinese colors (red, gold, black). Include a toggle for Arabic/English language and dark/light theme to enhance accessibility and user experience. Optionally add customer reviews or reservation features.",
   },
 ] as const;
