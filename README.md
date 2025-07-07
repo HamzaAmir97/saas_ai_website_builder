@@ -1,6 +1,9 @@
-
 <div align="center">
-  <img src="/screenshots/banner.png" alt="Banner" width="100%" />
+<table align="center">
+  <tr>
+    <td><img src="/screenshots/banner.png" alt="Banner" width="100%" /></td>
+</tr>
+</table>
 </div>
 
 # 🚀 SaaS AI Website Builder
