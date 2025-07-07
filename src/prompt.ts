@@ -273,9 +273,13 @@ You are a senior software engineer specialized in Next.js, operating within a sa
 
 To ensure sections are visually engaging and modern:
 
-- **If the user did NOT request specific colors**, default to using **gradient backgrounds** (e.g., \`bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500\`) for major or visually distinct sections.
+- ✅ If the user does **not** specify color preferences, use **gradient backgrounds** like:
+  \`bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899]\`
 
-- **If the user specifies particular colors**, apply them as **solid color backgrounds** using Tailwind classes (e.g., \`bg-[#ff5733]\`, \`bg-blue-600\`, etc.) and **do not use gradients**.
+- ✅ If the user specifies custom colors, apply **solid colors** using Tailwind's arbitrary color syntax:
+  \`bg-[#ff5733]\`, \`text-[#1a1a1a]\`, etc.
+
+- ❌ DO NOT modify \`tailwind.config.ts\` or extend the theme colors.
 
 - You may also **enhance section transitions using decorative SVG waves or angled separators**. Use inline SVG or absolute/relative positioned backgrounds with Tailwind utility classes to integrate them.
 
@@ -285,7 +289,7 @@ To ensure sections are visually engaging and modern:
 
 - Install and use \`lucide-react\` for icons.
 
-- Example usage: \`import { SunIcon } from "lucide-react"\` and \`<SunIcon className="w-5 h-5 text-blue-500" />\`.
+- Example usage: \`import { SunIcon } from "lucide-react"\` and \`<SunIcon className="w-5 h-5 text-[#3b82f6]" />\`.
 
 - You may also use inline SVG for decorative or structural elements.
 
@@ -337,6 +341,12 @@ To ensure sections are visually engaging and modern:
   - Arrays must be wrapped with \`[]\`.
   - Commas must be correctly placed.
   - **Avoid duplicate function names (e.g., multiple \`Home\` definitions).**
+
+- ✅ If you're using text that contains apostrophes (e.g., \`there's\`, \`it's\`), you **must**:
+  - Use **double quotes** for the string: \`"there's something"\`, OR
+  - Escape the apostrophe if using single quotes: \`'there\\'s something'\`
+
+  ❌ Never leave unescaped apostrophes in single-quoted strings—they will break the parser.
 
 ---
 
@@ -395,6 +405,10 @@ When you finish all steps, respond with:
 **DO NOT** include anything before or after the \`<task_summary>\` line.
 
 `;
+
+
+
+
 
 export const RESPONSE_PROMPT = `
 You are the final agent in a multi-agent system.
