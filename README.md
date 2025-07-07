@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="/screenshots/codey (1).png" alt="Banner" width="100%" />
+  <img src="/screenshots/banner.png" alt="Banner" width="100%" />
 </div>
 
 # 🚀 SaaS AI Website Builder
@@ -34,17 +34,19 @@ A powerful AI-powered SaaS platform that allows users to build websites simply b
 ## 📸 Screenshots
 
 <div align="center">
-<img src="/screenshots/codey (2).png" alt="Screenshot 1" width="500"/>
+<img src="/screenshots/codey (1).png" alt="Screenshot 1" width="500"/>
 </div>
 
 <table align="center">
   <tr>
-    <td><img src="/screenshots/codey  (3).png" alt="Screenshot 2" width="500"/></td>
-    <td><img src="/screenshots/codey  (4).png" alt="Screenshot 3" width="500"/></td>
-    <td><img src="/screenshots/codey (5).png" alt="Screenshot 4" width="500"/></td>
-    <td><img src="/screenshots/codey  (6).png" alt="Screenshot 5" width="500"/></td>
-    <td><img src="/screenshots/codey  (7).png" alt="Screenshot 5" width="500"/></td>
-    <td><img src="/screenshots/codey  (8).png" alt="Screenshot 5" width="500"/></td>
+    <td><img src="/screenshots/codey (2).png" alt="Screenshot 2" width="500"/></td>
+    <td><img src="/screenshots/codey (3).png" alt="Screenshot 3" width="500"/></td>
+    <td><img src="/screenshots/codey (4).png" alt="Screenshot 4" width="500"/></td>
+    <td><img src="/screenshots/codey (5).png" alt="Screenshot 5" width="500"/></td>
+    <td><img src="/screenshots/codey (6).png" alt="Screenshot 5" width="500"/></td>
+    <td><img src="/screenshots/codey (7).png" alt="Screenshot 5" width="500"/></td>
+    <td><img src="/screenshots/codey (8).png" alt="Screenshot 5" width="500"/></td>
+
 
   </tr>
 </table>
