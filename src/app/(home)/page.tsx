@@ -21,7 +21,7 @@ const transition = {
   delay: 0.5,
   ease: [0, 0.71, 0.2, 1.01],
 }
-  const words = [ "beautiful", "modern ", "apps and websites","with no code" ];
+  const words = [ "beautiful", "modern ", "apps" ,"websites","with", "no code" ];
   return (
     <>
       {mounted && <PageLoading/>}
@@ -35,12 +35,12 @@ const transition = {
       animate={{ scale: 1 }}
       transition={{ duration: 3 ,delay :0.5 }}
       className="flex  justify-center">
-      <Bot  size={50} width={80}  height={80} className="hidden md:block text-primary animate-bounce "/>
+      <Bot  size={50} width={80}  height={80} className="md:size-[80px] text-primary animate-bounce "/>
 
     
 
       </motion.div>
-        <div className="flex flex-col items-center">
+       
           {/* <Image
             src="/logo.svg"
             alt="Vibe"
@@ -60,9 +60,11 @@ const transition = {
        
 
  */}
-
-           < TypingAnimatedText />
-        </div>
+              
+           < TypingAnimatedText  />
+          
+         
+    
        
        
         
@@ -72,14 +74,14 @@ const transition = {
        animate={{ opacity: 1, y: 0 }}
        transition={{ duration: 2, delay: 1.5 }}
          className="text-lg md:text-xl text-muted-foreground text-center mb-2">
-          By chatting with AI Agent Create <FlipWords words={words} />
+          By chatting with AI Agent Create <br/> <FlipWords words={words} />
         </motion.div>
   <motion.div
     initial={{ scale: 0, y: 10 }}
     animate={{ scale: 1, y: 0 }}
     transition={{ duration: 1, delay: 1.5 }}
   
-  className="max-w-3xl mx-auto w-full mt-10">
+  className="max-w-3xl mx-auto w-full">
     <ProjectForm />
   </motion.div>
       </section>

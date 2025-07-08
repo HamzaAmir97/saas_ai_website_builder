@@ -4,10 +4,10 @@ import { motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 
 function TypingText({
-  words = ["Hi there", "I am Codey", "Let's Make Some Magic"],
+  words = ["Hi there", "I am Codey", "Let's Make" ,"Some Magic"],
   typingSpeed = 50,
   deleteSpeed = 50,
-  delayBetweenWords = 1000,
+  delayBetweenWords = 500,
 }: {
   words?: string[];
   typingSpeed?: number;
@@ -68,12 +68,12 @@ function TypingText({
   }, [controls]);
 
   return (
-    <div className="w-full h-full flex items-center justify-center ">
-      <div className="text-4xl text-secondary font-Aladin">
+ 
+      <div className="text-3xl text-secondary font-Aladin flex items-center justify-center">
         {currentText}
         <motion.span animate={controls}>|</motion.span>
       </div>
-    </div>
+   
   );
 }
 
