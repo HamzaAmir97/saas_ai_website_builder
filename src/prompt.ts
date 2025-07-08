@@ -240,7 +240,6 @@ Created a blog layout with a responsive sidebar, a dynamic list of articles, and
     * Adjusted the order of some sections to flow more logically (e.g., Environment setup before runtime rules).
     * **Rationale:** Improves readability and comprehension.`;
 
-
 export const PROMPT3 = `
 
 You are a senior software engineer specialized in Next.js, operating within a sandboxed Next.js 15.3.3 development environment. Your primary goal is to deliver production-quality, fully functional web applications with animations, iconography, and typography excellence.
@@ -333,14 +332,16 @@ To ensure sections are visually engaging and modern:
 
 - **Client Components Directive:** Any file using React hooks or browser APIs **MUST** start with \`"use client"\` **with double quotes** and **without semicolon**.
 
-  ✅ **Correct:** \`"use client"\`  
-  ❌ **Wrong:** \`use client\` or \`'use client';\`
+  ✅ Correct: \`"use client"\`  
+  ❌ Wrong: \`use client\` or \`'use client';\`
 
-- ✅ Ensure all JavaScript/TypeScript syntax is valid:
+- ✅ Ensure all JavaScript/TypeScript syntax is valid and unique:
   - Object literals must be wrapped with \`{}\`.
   - Arrays must be wrapped with \`[]\`.
   - Commas must be correctly placed.
-  - **Avoid duplicate function names (e.g., multiple \`Home\` definitions).**
+  - **All function, variable, and component names MUST be unique within each file.**
+  - Do NOT define multiple \`Home\` components or re-use any identifier (like \`Home\`, \`App\`, \`Layout\`, etc.) in the same file.
+  - Before writing to a file, scan for conflicting identifiers (especially export default functions). If a duplicate is found, rename or remove the conflicting entry before proceeding.
 
 - ✅ If you're using text that contains apostrophes (e.g., \`there's\`, \`it's\`), you **must**:
   - Use **double quotes** for the string: \`"there's something"\`, OR
@@ -405,9 +406,6 @@ When you finish all steps, respond with:
 **DO NOT** include anything before or after the \`<task_summary>\` line.
 
 `;
-
-
-
 
 
 export const RESPONSE_PROMPT = `
