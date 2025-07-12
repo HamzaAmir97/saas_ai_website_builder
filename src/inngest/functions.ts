@@ -346,6 +346,7 @@ export const codeAgentFunction = inngest.createFunction(
     });
 
 
+    
     const result = await network.run(event.data.value);
 
 
