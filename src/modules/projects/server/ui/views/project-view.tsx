@@ -43,10 +43,36 @@ export const ProjectView = ({ projectId }: props) => {
         <div className="h-screen" >
 
 
+          
+          
+          
+            <ResizablePanelGroup direction="horizontal">
 
-            {/* on small screens */}
+            <ResizablePanel
+                defaultSize={35}
+                minSize={20}
+                className="flex flex-col min-h-0"
+            >
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                    <Suspense fallback={<p>loading project .... </p>}>
+                        <ProjectHeader projectId={projectId} />
+                    </Suspense>
 
-            <ResizablePanelGroup direction="vertical">
+                    <Suspense fallback={<p>Loading ...</p>}>
+                        <MessagesContainer projectId={projectId}
+                            activeFragment={activeFragment}
+                            setActiveFragment={setactiveFragment}
+                        />
+                    </Suspense>
+                </ErrorBoundary>
+            </ResizablePanel>
+
+            <ResizableHandle className="hover:bg-primary transition-colors" />
+
+
+
+
+
                 <ResizablePanel defaultSize={65} minSize={50}>
 
 
@@ -231,28 +257,6 @@ export const ProjectView = ({ projectId }: props) => {
                     </Tabs>
 
                 </ResizablePanel>
-
-      <ResizableHandle className="hover:bg-primary transition-colors" />
-
-                <ResizablePanel
-                    defaultSize={35}
-                    minSize={20}
-                    className="flex flex-col min-h-0"
-                >
-                    <ErrorBoundary FallbackComponent={ErrorFallback}>
-                        <Suspense fallback={<p>loading project .... </p>}>
-                            <ProjectHeader projectId={projectId} />
-                        </Suspense>
-
-                        <Suspense fallback={<p>Loading ...</p>}>
-                            <MessagesContainer projectId={projectId}
-                                activeFragment={activeFragment}
-                                setActiveFragment={setactiveFragment}
-                            />
-                        </Suspense>
-                    </ErrorBoundary>
-                </ResizablePanel>
-
 
 
 

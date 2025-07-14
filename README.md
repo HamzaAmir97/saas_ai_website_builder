@@ -206,5 +206,5 @@ Open a Pull Request 🚀
 
 ## 📄 License
 
-Licensed under [MIT](LICENSE)
+© 2025 Hamzah Amir This code is licensed under the MIT License. Unauthorized commercial use without attribution is prohibited.
 
