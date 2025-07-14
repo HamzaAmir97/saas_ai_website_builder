@@ -237,7 +237,7 @@ We welcome contributions — especially in AI prompt engineering, UI/UX improvem
 git checkout -b feature/your-feature-name
 # After changes
 git commit -m "feat: improved something"
-git push origin feature/your-feature-name
+git push origin feature/your-feature
 ```
 
 Open a Pull Request 🚀
