@@ -140,6 +140,36 @@ saas\_ai\_website\_builder/
 
 ---
 
+## 🔐 Environment Variables
+
+To run this project, you need to set up the following environment variables in a `.env` file. You can use the `.env.example` as a template.
+
+```env
+# Database
+DATABASE_URL="YOUR_POSTGRESQL_URL"
+
+# App URL
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+
+# AI Provider API Keys
+GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
+OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
+ANTHROPIC_API_KEY="YOUR_ANTHROPIC_API_KEY"
+
+# E2B Sandbox API Key
+E2B_API_KEY="YOUR_E2B_API_KEY"
+
+# Clerk Authentication and Billing
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="YOUR_CLERK_PUBLISHABLE_KEY"
+CLERK_SECRET_KEY="YOUR_CLERK_SECRET_KEY"
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+```
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -163,6 +193,16 @@ npx prisma migrate dev
 
 npm run dev
 ````
+
+---
+
+## 📝 Important Notes
+
+- This version is experimental, expect occasional issues.
+- Results improve as you use it — context builds over time.
+- The project is fully open-source — feel free to fork, improve, or use with different models.
+- 🔧 Code is ready — just plug in your `.env` file and run it locally.
+- The system currently runs on Google Gemini API, which is powerful but can be unreliable or limited depending on usage.
 
 ---
 
@@ -197,7 +237,7 @@ We welcome contributions — especially in AI prompt engineering, UI/UX improvem
 git checkout -b feature/your-feature-name
 # After changes
 git commit -m "feat: improved something"
-git push origin feature/your-feature-name
+git push origin feature/your-feature
 ```
 
 Open a Pull Request 🚀
@@ -206,5 +246,4 @@ Open a Pull Request 🚀
 
 ## 📄 License
 
-Licensed under [MIT](LICENSE)
-
+© 2025 Hamzah Amir This code is licensed under the MIT License. Unauthorized commercial use without attribution is prohibited.
