@@ -6,9 +6,10 @@ import {
     ResizablePanel
 } from "@/components/ui/resizable";
 import MessagesContainer from "../components/messages_container";
-import { Suspense, useState } from "react";
-import { Fragment } from "@/generated/prisma";
+import {  useState } from "react";
 import ProjectHeader from "../components/project-header";
+import FragmentWeb from "../components/fragmentweb";
+import { Fragment } from "@/generated/prisma";
 
 interface props {
     projectId: string,
@@ -49,7 +50,7 @@ export const ProjectView = ({ projectId }: props) => {
                     defaultSize={65}
                     maxSize={50}
                 >
-                    TODO : Preview
+                   {!!activeFragment &&<FragmentWeb data={activeFragment}/>}
 
                 </ResizablePanel>
 
