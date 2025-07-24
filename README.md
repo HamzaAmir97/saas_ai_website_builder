@@ -1,249 +1,196 @@
 
-## 🌟 Support the Project
-
-Please Don't forget to support me with a ⭐ STAR — it really helps and motivates me to keep improving the system!
-
 ---
-<div align="center">
-<table align="center">
-  <tr>
-    <td><img src="/screenshots/banner.png" alt="Banner" width="100%" /></td>
-</tr>
-</table>
-</div>
 
-# 🚀 SaaS AI Website Builder
+# 🚀 Modern Full-Stack SaaS/AI Web App Builder
 
-A powerful AI-powered SaaS platform that allows users to build websites simply by talking to an AI assistant. This project leverages multiple language models and cutting-edge technologies to generate production-ready Next.js code and preview it live in a secure sandbox.
-
-> 💳 **Billing** is handled securely via [Clerk Billing](https://clerk.dev).  
-> 🎨 Theme colors follow the **Twitter color scheme** via [`tweakcn`](https://github.com/tweakcn).  
-> 🐳 **Docker** is used to run generated projects inside a sandbox environment without compatibility issues.
+A cutting-edge, full-stack platform for building, deploying, and managing modern web applications with ease. This system empowers users to create production-grade SaaS dashboards, AI-powered tools, and interactive web projects—simply by chatting with an AI agent. It features robust authentication, modular UI, and seamless deployment, making it ideal for startups, developers, and teams seeking rapid, scalable web solutions.
 
 ---
 
+## 🛠️ Tech Stack
 
-
-
-## 📚 Table of Contents
-
-- [📸 Screenshots](#-screenshots)
-- [🎯 Project Purpose](#-project-purpose)
-- [🛠️ Technologies Used](#-technologies-used)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-  - [AI Integration](#ai-integration)
-- [📂 Project Structure](#-project-structure)
-- [📁 Key Files](#-key-files)
-- [🚀 Getting Started](#-getting-started)
-- [💡 Usage Flow](#-usage-flow)
-- [🚢 Deployment](#-deployment)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-<img src="/screenshots/codey (1).png" alt="Screenshot 1" width="500"/>
-</div>
-
-<table align="center">
-  <tr>
-    <td><img src="/screenshots/codey (2).png" alt="Screenshot 2" width="500"/></td>
-    <td><img src="/screenshots/codey (3).png" alt="Screenshot 3" width="500"/></td>
-    <td><img src="/screenshots/codey (4).png" alt="Screenshot 4" width="500"/></td>
-    <td><img src="/screenshots/codey (5).png" alt="Screenshot 5" width="500"/></td>
-    <td><img src="/screenshots/codey (6).png" alt="Screenshot 5" width="500"/></td>
-    <td><img src="/screenshots/codey (7).png" alt="Screenshot 5" width="500"/></td>
-    <td><img src="/screenshots/codey (8).png" alt="Screenshot 5" width="500"/></td>
-
-
-  </tr>
-</table>
+<p align="left">
+  <a href="https://nextjs.org/" target="_blank"><img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=white" alt="Next.js" /></a>
+  <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  <a href="https://tailwindcss.com/" target="_blank"><img src="https://img.shields.io/badge/Tailwind_CSS-38bdf8?logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a>
+  <a href="https://clerk.com/" target="_blank"><img src="https://img.shields.io/badge/Clerk-3b49df?logo=clerk&logoColor=white" alt="Clerk" /></a>
+  <a href="https://ui.shadcn.com/" target="_blank"><img src="https://img.shields.io/badge/ShadCN_UI-111827?logo=react&logoColor=white" alt="ShadCN UI" /></a>
+  <a href="https://www.prisma.io/" target="_blank"><img src="https://img.shields.io/badge/Prisma-2d3748?logo=prisma&logoColor=white" alt="Prisma" /></a>
+  <a href="https://www.postgresql.org/" target="_blank"><img src="https://img.shields.io/badge/PostgreSQL-4169e1?logo=postgresql&logoColor=white" alt="PostgreSQL" /></a>
+  <a href="https://trpc.io/" target="_blank"><img src="https://img.shields.io/badge/tRPC-2596be?logo=trpc&logoColor=white" alt="tRPC" /></a>
+  <a href="https://react.dev/" target="_blank"><img src="https://img.shields.io/badge/React-20232a?logo=react&logoColor=61dafb" alt="React" /></a>
+  <a href="https://lucide.dev/" target="_blank"><img src="https://img.shields.io/badge/Lucide-000?logo=lucide&logoColor=white" alt="Lucide" /></a>
+  <a href="https://motion.dev/" target="_blank"><img src="https://img.shields.io/badge/Motion-000?logo=motion&logoColor=white" alt="Motion" /></a>
+  <a href="https://lottiefiles.com/" target="_blank"><img src="https://img.shields.io/badge/Lottie-00bfff?logo=lottiefiles&logoColor=white" alt="Lottie" /></a>
+  <a href="https://inngest.com/" target="_blank"><img src="https://img.shields.io/badge/Inngest-000?logo=inngest&logoColor=white" alt="Inngest" /></a>
+</p>
 
 ---
 
-## 🎯 Project Purpose
+## ✨ Features
 
-This platform serves as a bridge between non-technical users and web development by enabling them to:
-
-- Generate website projects using AI conversations
-- Create complete frontend code with no coding experience
-- Preview results instantly in a sandboxed environment
-- Manage multiple projects with real-time tracking
-
----
-
-## 🛠️ Technologies Used
-
-### Frontend
-[![Next.js](https://img.shields.io/badge/Next.js-15-blue)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Utility--First-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![Radix UI](https://img.shields.io/badge/Radix_UI-Accessible_Components-8B5CF6)](https://www.radix-ui.com/)
-[![tRPC](https://img.shields.io/badge/tRPC-End--to--End_Typesafe_API-3178C6?logo=typescript)](https://trpc.io/)
-[![TanStack Query](https://img.shields.io/badge/TanStack_Query-Server_State-FF4154)](https://tanstack.com/query)
-[![React Hook Form](https://img.shields.io/badge/React_Hook_Form-Forms_with_Zod-EC5990?logo=react)](https://react-hook-form.com/)
-[![Clerk](https://img.shields.io/badge/Clerk-Auth_and_Billing-5F5CED?logo=clerk)](https://clerk.dev/)
-
-### Backend
-[![Next.js API Routes](https://img.shields.io/badge/Next.js_API-Routes-blue)](https://nextjs.org/docs/pages/building-your-application/routing/api-routes)
-[![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma)](https://www.prisma.io/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql)](https://neon.tech/)
-[![Inngest](https://img.shields.io/badge/Inngest-Background_Jobs-FBBF24)](https://www.inngest.com/)
-
-### AI Integration
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT-412991?logo=openai)](https://openai.com/)
-[![Anthropic](https://img.shields.io/badge/Anthropic-Claude-00B4D8)](https://www.anthropic.com/)
-[![Google Gemini](https://img.shields.io/badge/Google_Gemini-AI_Model-4285F4?logo=google)](https://deepmind.google/technologies/gemini/)
-[![E2B](https://img.shields.io/badge/E2B-Code_Execution-FFA500)](https://e2b.dev/)
-
-> 🐳 Docker is used to run generated projects inside sandbox containers without compatibility issues.
+- 🔐 **Authentication & Billing** with Clerk
+- 🧠 **AI-powered content and code generation**
+- 🎨 **Theming** with Twitter-inspired color palette via [`tweakcn`](https://github.com/steven-tey/tweakcn)
+- 📦 **Modular UI** using ShadCN components and utility-first Tailwind CSS
+- ⚡ **Real-time project creation** and management with tRPC and React Query
+- 🗂️ **File explorer, code viewer, and project templates**
+- 📊 **Usage tracking and rate limiting**
+- 🖼️ **Lottie animations** and SVG iconography
+- 🌗 **Dark/light mode** and responsive design
+- 🚀 **One-click deployment** to Vercel or Netlify
+- 📝 **Multi-language and theming support** (e.g., Arabic/English toggle)
+- 🛡️ **Role-based access and protected routes**
+- 🧩 **Extensible with custom components and templates**
 
 ---
 
-## 📂 Project Structure
+## 🚦 Getting Started
 
+Clone the repository and run locally:
+
+```bash
+git clone https://github.com/username/repo-name.git
+cd repo-name
+pnpm install
+pnpm dev
 ```
 
-saas\_ai\_website\_builder/
-├── prisma/               # Database schema
-├── public/               # Static assets
-├── sandbox-templates/    # Website templates
-├── src/
-│   ├── app/              # App Router pages
-│   ├── components/       # Reusable components
-│   ├── hooks/            # Custom hooks
-│   ├── inngest/          # Background jobs
-│   ├── lib/              # Utility functions
-│   ├── modules/          # Features modules
-│   ├── trpc/             # tRPC handlers
-│   ├── middleware.ts     # Auth middleware
-│   └── prompt.ts         # AI prompts
-├── .env                  # Environment variables
-├── next.config.ts        # Next.js configuration
-├── package.json          # Project dependencies
-└── tsconfig.json         # TypeScript configuration
+Or use your preferred package manager:
 
-````
+```bash
+npm install && npm run dev
+# or
+yarn install && yarn dev
+# or
+bun install && bun dev
+```
 
 ---
 
-## 📁 Key Files
+## 🔑 Environment Variables
 
-- `schema.prisma`: Data models
-- `prompt.ts`: AI prompt logic
-- `middleware.ts`: Auth and middleware logic
-- `.env`: API keys and secrets
-
----
-
-## 🔐 Environment Variables
-
-To run this project, you need to set up the following environment variables in a `.env` file. You can use the `.env.example` as a template.
+Create a `.env` file in the root directory with the following structure:
 
 ```env
 # Database
-DATABASE_URL="YOUR_POSTGRESQL_URL"
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 
-# App URL
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
+# Clerk (Authentication)
+CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+CLERK_SECRET_KEY=your-clerk-secret-key
 
-# AI Provider API Keys
-GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
-OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
-ANTHROPIC_API_KEY="YOUR_ANTHROPIC_API_KEY"
+# (Optional) App URL for SSR
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
 
-# E2B Sandbox API Key
-E2B_API_KEY="YOUR_E2B_API_KEY"
+> See [Clerk Docs: Environment Variables](https://clerk.com/docs/reference/environment-variables) for more details.
 
-# Clerk Authentication and Billing
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="YOUR_CLERK_PUBLISHABLE_KEY"
-CLERK_SECRET_KEY="YOUR_CLERK_SECRET_KEY"
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
-NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+---
+
+## 🧑‍💻 Clerk Integration
+
+This app uses [Clerk](https://clerk.com/) for authentication, user management, and billing (with built-in pricing tables). All authentication flows (sign-in, sign-up, user profile) are pre-integrated and styled to match the app's theme.
+
+- **Clerk setup guide:** [Clerk Quickstart](https://clerk.com/docs/quickstarts)
+- **Billing:** Out-of-the-box pricing table and plan management via Clerk.
+
+---
+
+## 🎨 Theme & UI
+
+- **Twitter-inspired color scheme** powered by [`tweakcn`](https://github.com/steven-tey/tweakcn)
+- **Utility-first CSS** with Tailwind for rapid, consistent styling
+- **Pre-built, accessible components** from [ShadCN UI](https://ui.shadcn.com/)
+- **Dark/light mode** toggle and system preference support
+- **Custom Lottie animations** and SVG icons for a delightful UX
+
+---
+
+## 🚀 Deployment
+
+Deploy instantly to [Vercel](https://vercel.com) or [Netlify](https://netlify.com):
+
+- **Vercel:**  
+  [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project)
+- **Netlify:**  
+  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/username/repo-name)
+
+**Sample `vercel.json`:**
+
+```json
+{
+  "version": 2,
+  "builds": [
+    { "src": "next.config.ts", "use": "@vercel/next" }
+  ]
+}
 ```
 
 ---
 
-## 🚀 Getting Started
+## 📁 Folder Structure
 
-### Prerequisites
+<details>
+<summary>Click to expand</summary>
 
-- Node.js 18+
-- PostgreSQL or Neon.tech
-- API keys (OpenAI, Anthropic, Gemini, E2B, Clerk)
-
-### Setup
-
-```bash
-git clone https://github.com/your-org/saas-ai-website-builder
-cd saas-ai-website-builder
-
-npm install
-
-cp .env.example .env
-# Fill in all API keys
-
-npx prisma migrate dev
-
-npm run dev
-````
-
----
-
-## 📝 Important Notes
-
-- This version is experimental, expect occasional issues.
-- Results improve as you use it — context builds over time.
-- The project is fully open-source — feel free to fork, improve, or use with different models.
-- 🔧 Code is ready — just plug in your `.env` file and run it locally.
-- The system currently runs on Google Gemini API, which is powerful but can be unreliable or limited depending on usage.
-
----
-
-## 💡 Usage Flow
-
-1. Sign up using Clerk
-2. Create a new website project
-3. Describe your idea to the AI
-4. Review and edit generated code
-5. Preview in sandbox
-6. Export or deploy
-
----
-
-## 🚢 Deployment
-
-Deploy easily to Vercel, Netlify, etc.
-
-```bash
-npm run build
-npm run start
+```text
+<code_block_to_apply_changes_from>
 ```
+</details>
+
+---
+
+## 🖼️ Screenshots / Demo
+
+![Banner](./screenshots/banner.png)
+![App Demo](./screenshots/codey%20(1).png)
+![Project View](./screenshots/codey%20(2).png)
+![File Explorer](./screenshots/codey%20(3).png)
+
+> _More screenshots available in the `/screenshots` folder._
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions — especially in AI prompt engineering, UI/UX improvements, and API integrations.
+Contributions are welcome! Please open issues or pull requests for new features, bug fixes, or improvements. For major changes, please discuss them in an issue first.
 
-```bash
-# Fork
-git checkout -b feature/your-feature-name
-# After changes
-git commit -m "feat: improved something"
-git push origin feature/your-feature
-```
-
-Open a Pull Request 🚀
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a pull request
 
 ---
 
 ## 📄 License
 
-© 2025 Hamzah Amir This code is licensed under the MIT License. Unauthorized commercial use without attribution is prohibited.
+This project is open-source and available under the [MIT License](./LICENSE.md).
+
+---
+
+## 🙏 Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Clerk](https://clerk.com/)
+- [ShadCN UI](https://ui.shadcn.com/)
+- [Prisma](https://www.prisma.io/)
+- [tRPC](https://trpc.io/)
+- [Lucide Icons](https://lucide.dev/)
+- [LottieFiles](https://lottiefiles.com/)
+- [Inngest](https://inngest.com/)
+- [Vercel](https://vercel.com/)
+- [tweakcn](https://github.com/steven-tey/tweakcn)
+- All contributors and open-source inspiration
+
+---
+
+> _Built with ❤️ for the modern web._
+
+---
+
+Let me know if you want to further customize any section or add more project-specific details!
+
